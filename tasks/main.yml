@@ -13,7 +13,7 @@
 
 - name: Ensure {{ duplicacy_pre_backup_script_file_name }}
   ansible.builtin.template:
-    src: pre-post-script.sh.j2
+    src:  pre-post-script.sh.j2
     dest: "{{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }}"
     mode: ug+x,o-rwx
   vars:
@@ -22,7 +22,7 @@
 
 - name: Ensure {{ duplicacy_post_backup_script_file_name }}
   ansible.builtin.template:
-    src: pre-post-script.sh.j2
+    src:  pre-post-script.sh.j2
     dest: "{{ duplicacy_script_file_path }}/{{ duplicacy_post_backup_script_file_name }}"
     mode: ug+x,o-rwx
   vars:
@@ -31,7 +31,7 @@
 
 - name: Ensure {{ duplicacy_pre_prune_script_file_name }}
   ansible.builtin.template:
-    src: pre-post-script.sh.j2
+    src:  pre-post-script.sh.j2
     dest: "{{ duplicacy_script_file_path }}/{{ duplicacy_pre_prune_script_file_name }}"
     mode: ug+x,o-rwx
   vars:
@@ -40,7 +40,7 @@
 
 - name: Ensure {{ duplicacy_post_prune_script_file_name }}
   ansible.builtin.template:
-    src: pre-post-script.sh.j2
+    src:  pre-post-script.sh.j2
     dest: "{{ duplicacy_script_file_path }}/{{ duplicacy_post_prune_script_file_name }}"
     mode: ug+x,o-rwx
   vars:
@@ -50,7 +50,7 @@
 - name: Set _duplicacy_env_init
   ansible.builtin.set_fact:
     _duplicacy_env_init:
-      DUPLICACY_PASSWORD: "{{ duplicacy_password }}"
+      DUPLICACY_PASSWORD:     "{{ duplicacy_password }}"
       DUPLICACY_INIT_OPTIONS: "{{ duplicacy_init_options }}"
 
 - name: Set _duplicacy_env_backup
@@ -75,7 +75,7 @@
     - name: Set _duplicacy_env_special for 'Blackblaze B2'
       ansible.builtin.set_fact:
         _duplicacy_env_special:
-          DUPLICACY_B2_ID: "{{ duplicacy_b2_id }}"
+          DUPLICACY_B2_ID:  "{{ duplicacy_b2_id }}"
           DUPLICACY_B2_KEY: "{{ duplicacy_b2_key }}"
   when: duplicacy_storage_backend == 'Blackblaze B2'
 
@@ -92,7 +92,7 @@
     - name: Set _duplicacy_env_special for 'SSH/SFTP Keyfile'
       ansible.builtin.set_fact:
         _duplicacy_env_special:
-          DUPLICACY_SSH_KEY_FILE: "{{ duplicacy_secret_file_path }}/{{ duplicacy_ssh_key_file_name }}"
+          DUPLICACY_SSH_KEY_FILE:   "{{ duplicacy_secret_file_path }}/{{ duplicacy_ssh_key_file_name }}"
           DUPLICACY_SSH_PASSPHRASE: "{{ duplicacy_ssh_passphrase }}"
     - name: Set _duplicacy_secret_file_name for 'SSH/SFTP Keyfile'
       ansible.builtin.set_fact:

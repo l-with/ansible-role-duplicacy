@@ -12,19 +12,19 @@ fileignoreconfig:
 - filename: tasks/main.yml
   allowed_patterns:
   - >
-    DUPLICACY_PASSWORD: "{{ duplicacy_password }}"
+    DUPLICACY_PASSWORD: +"{{ duplicacy_password }}"
   - >
-    DUPLICACY_B2_KEY: "{{ duplicacy_b2_key }}"
+    DUPLICACY_B2_KEY: +"{{ duplicacy_b2_key }}"
   - >
-    DUPLICACY_SSH_PASSWORD: "{{ duplicacy_ssh_password }}"
+    DUPLICACY_SSH_PASSWORD: +"{{ duplicacy_ssh_password }}"
   - >
-    DUPLICACY_SSH_KEY_FILE: "{{ duplicacy_secret_file_path }}/{{ duplicacy_ssh_key_file_name }}"
+    DUPLICACY_SSH_KEY_FILE: +"{{ duplicacy_secret_file_path }}/{{ duplicacy_ssh_key_file_name }}"
   - >
-    DUPLICACY_SSH_PASSPHRASE: "{{ duplicacy_ssh_passphrase }}"
+    DUPLICACY_SSH_PASSPHRASE: +"{{ duplicacy_ssh_passphrase }}"
   - >
-    _duplicacy_secret_file_name: "{{ duplicacy_ssh_key_file_name }}"
+    _duplicacy_secret_file_name: +"{{ duplicacy_ssh_key_file_name }}"
   - >
-    _duplicacy_secret_file_name: "{{ duplicacy_onedrive_token_file_name }}"
+    _duplicacy_secret_file_name: +"{{ duplicacy_onedrive_token_file_name }}"
 
 - filename: README.md
   allowed_patterns:
