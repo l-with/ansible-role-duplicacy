@@ -24,14 +24,24 @@ install and configure duplicacy
 | backup | duplicacy_b2_id | | the value for `DUPLICACY_B2_ID` |
 | backup | duplicacy_b2_key | | the value for `DUPLICACY_B2_KEY` |
 | backup | duplicacy_backup_immediately | `false` | if a backup should be performed immediately after the container is started immediately |
-| backup | duplicacy_backup_schedule | `0 1 * * *` | the cron schedule for duplicacy backups |
+| backup | duplicacy_backup_schedule_user | `root` | the cron schedule user for duplicacy backups |
+| backup | duplicacy_backup_schedule_hour | `1` | the cron schedule hour for duplicacy backups |
+| backup | duplicacy_backup_schedule_minute | `0` | the cron schedule minute for duplicacy backups |
+| backup | duplicacy_backup_schedule_day | `*` | the cron schedule day for duplicacy backups |
+| backup | duplicacy_backup_schedule_weekday | `*` | the cron schedule weekday for duplicacy backups |
+| backup | duplicacy_backup_schedule_month | `*` | the cron schedule month for duplicacy backups |
 | backup | duplicacy_scriptfile_path | `"{{ duplicacy_path }}/scripts"` | the path where the scripts are create |
 | backup | duplicacy_pre_backup_script_file_name | `pre-backup.sh` | the filename for the pre backup script |
 | backup | duplicacy_pre_backup_script_file_content |  | the content for the pre backup script |
 | backup | duplicacy_post_backup_script_file_name | `post-backup.sh` | the filename for the post backup script |
 | backup | duplicacy_post_backup_script_file_content |  | the content for the post backup script |
 | prune | duplicacy_prune_options | `-keep 365:3650 -keep 30:365 -keep 7:30 -keep 1:7 -a` | the options for `duplicacy prune` |
-| prune | duplicacy_prune_schedule | `0 4 * * *` | the cron schedule for duplicacy prunes |
+| prune | duplicacy_prune_schedule_user | `root` | the cron schedule user for duplicacy prunes |
+| prune | duplicacy_prune_schedule_hour | `4` | the cron schedule hour for duplicacy prunes |
+| prune | duplicacy_prune_schedule_minute | `0` | the cron schedule minute for duplicacy prunes |
+| prune | duplicacy_prune_schedule_day | `*` | the cron schedule day for duplicacy prunes |
+| prune | duplicacy_prune_schedule_weekday | `*` | the cron schedule weekday for duplicacy prunes |
+| prune | duplicacy_prune_schedule_month | `*` | the cron schedule month for duplicacy prunes |
 | prune | duplicacy_pre_prune_script_file_name | `pre-prune.sh` | the filename for the pre prune script |
 | prune | duplicacy_pre_prune_script_file_content |  | the content for the pre prune script |
 | prune | duplicacy_post_prune_script_file_name | `post-prune.sh` | the filename for the post prune script |

@@ -10,14 +10,24 @@ duplicacy_secret_file_force:            false
 duplicacy_onedrive_token_file_name:     'one-token.json'
 duplicacy_ssh_key_file_name:            'id'
 duplicacy_backup_immediately:           false
-duplicacy_backup_schedule:              '0 1 * * *'
+duplicacy_backup_schedule_hour:         "1"
+duplicacy_backup_schedule_minute:       "0"
+duplicacy_backup_schedule_day:          "*"
+duplicacy_backup_schedule_weekday:      "*"
+duplicacy_backup_schedule_month:        "*"
+duplicacy_backup_schedule_user:         root
 duplicacy_script_file_path:             '{{ duplicacy_path }}/scripts'
 duplicacy_pre_backup_script_file_name:  'pre-backup.sh'
 duplicacy_post_backup_script_file_name: 'post-backup.sh'
 duplicacy_pre_prune_script_file_name:   'pre-prune.sh'
 duplicacy_post_prune_script_file_name:  'post-prune.sh'
 duplicacy_prune_options:                '-keep 365:3650 -keep 30:365 -keep 7:30 -keep 1:7 -a'
-duplicacy_prune_schedule:               '0 4 * * *'
+duplicacy_prune_schedule_hour:          "4"
+duplicacy_prune_schedule_minute:        "0"
+duplicacy_prune_schedule_day:           "*"
+duplicacy_prune_schedule_weekday:       "*"
+duplicacy_prune_schedule_month:         "*"
+duplicacy_prune_schedule_user:          root
 
 duplicacy_storage_backends:
   - 'Local disk'
