@@ -6,6 +6,8 @@ install and configure duplicacy
 
 | group | variable | default | description |
 | --- | --- | ---| --- |
+| install | duplicacy_version | `2.7.2` | the duplicacy version to install |
+| install | duplicacy_path | `/srv/duplicacy` | the path to install duplicacy |
 | backup | duplicacy_snapshot_id | | the `<snapshot id>` for `duplicacy init` |
 | backup | duplicacy_working_directory | | the working directory for duplicacy which is the default path for the repository to backup |
 | backup | duplicacy_password | | the value for `DUPLICACY_PASSWORD`, e.g. the passphrase to encrypt the backups with before they are stored remotely |
@@ -13,8 +15,8 @@ install and configure duplicacy
 | backup | duplicacy_storage_backend | | the storage backend, possible values are  <br /><ol><li>`Local disk`</li><li>`Backblaze B2`</li><li>`SSH/SFTP Password`</li><li>`SSH/SFTP Keyfile`</li><li>`Onedrive`</li></ol> |
 | backup | duplicacy_init_options | `''` | the options for `duplicacy init` |
 | backup | duplicacy_repository_path | `"{{ duplicacy_working_directory }}"` | the `<path>` for `duplicacy ini -repository <path>` |
-| backup | duplicacy_secrets_file_path | `/srv/duplicacy/secrets` | the path where the token and the ssh-key files are created |
-| backup | duplicacy_secret_file_name | it depends on `duplicacy_autobackup_storage_backend` | the filename for the secret file, the default is <br /><ol><li>`Local disk`<br />irrelevant</li><li>`Backblaze B2`<br />irrelevant</li><li>`SSH/SFTP Password`<br />irrelevant</li><li>`SSH/SFTP Keyfile`<br />`{{ duplicacy_ssh_key_file_name }}`</li><li>`Onedrive`<br />`{{ duplicacy_onedrive_token_file_name }}`</li></ol> |
+| backup | duplicacy_secrets_file_path | `"{{ duplicacy_path }}/secret"` | the path where the token and the ssh-key files are created |
+| backup | duplicacy_secret_file_name | it depends on `duplicacy_autobackup_storage_backend` | the filename for the secret file, the default is <br /><ol><li>`Local disk`<br />irrelevant</li><li>`Backblaze B2`<br />irrelevant</li><li>`SSH/SFTP Password`<br />irrelevant</li><li>`SSH/SFTP Keyfile`<br />`"{{ duplicacy_ssh_key_file_name }}"`</li><li>`Onedrive`<br />`{{ duplicacy_onedrive_token_file_name }}`</li></ol> |
 | backup | duplicacy_secret_file_content | | the content for `duplicacy_secret_file_name` |
 | backup | duplicacy_secret_file_force | `false` | if the templating of the secret file will be forced, even if the secret file exists |
 | backup | duplicacy_onedrive_token_file_name | `one-token.json`| the filename for `DUPLICACY_ONE_TOKEN` |
@@ -23,10 +25,38 @@ install and configure duplicacy
 | backup | duplicacy_b2_key | | the value for `DUPLICACY_B2_KEY` |
 | backup | duplicacy_backup_immediately | `false` | if a backup should be performed immediately after the container is started immediately |
 | backup | duplicacy_backup_schedule | `0 1 * * *` | the cron schedule for duplicacy backups |
-| backup | duplicacy_scriptfile_path | `/srv/duplicacy/scripts` | the path where the scripts are create |
+| backup | duplicacy_scriptfile_path | `"{{ duplicacy_path }}/scripts"` | the path where the scripts are create |
 | backup | duplicacy_pre_backup_script_file_name | `pre-backup.sh` | the filename for the pre backup script |
 | backup | duplicacy_pre_backup_script_file_content |  | the content for the pre backup script |
 | backup | duplicacy_post_backup_script_file_name | `post-backup.sh` | the filename for the post backup script |
 | backup | duplicacy_post_backup_script_file_content |  | the content for the post backup script |
 | prune | duplicacy_prune_options | `-keep 365:3650 -keep 30:365 -keep 7:30 -keep 1:7 -a` | the options for `duplicacy prune` |
 | prune | duplicacy_prune_schedule | `0 4 * * *` | the cron schedule for duplicacy prunes |
+| prune | duplicacy_pre_prune_script_file_name | `pre-prune.sh` | the filename for the pre prune script |
+| prune | duplicacy_pre_prune_script_file_content |  | the content for the pre prune script |
+| prune | duplicacy_post_prune_script_file_name | `post-prune.sh` | the filename for the post prune script |
+| prune | duplicacy_post_prune_script_file_content |  | the content for the post prune script |
+
+## Test
+
+This role can be tested by
+```bash
+ansible-playbook test/playbook.yml -e "test_backend='Not implemented'"
+```
+```bash
+ansible-playbook test/playbook.yml -e "test_backend='Local disk'"
+```
+```bash
+ansible-playbook test/playbook.yml -e "test_backend='Blackblaze B2'" -e@test/.blackblaze_b2.yml
+```
+```bash
+ansible-playbook test/playbook.yml -e "test_backend='SSH/SFTP Password'" -e@test/.ssh_sftp_password.yml
+```
+```bash
+ansible-playbook test/playbook.yml -e "test_backend='SSH/SFTP Keyfile'" -e@test/.ssh_sftp_key.yml
+```
+```bash
+ansible-playbook test/playbook.yml -e "test_backend='Onedrive'" -e@test/.onedrive.yml
+```
+
+The files `test/.<storage>.yml` should contain and set the variables of `test/<storage>.yml`.
