@@ -1,0 +1,46 @@
+---
+
+- name: Ensure "{{ duplicacy_path }}"
+  ansible.builtin.file:
+    path: "{{ duplicacy_path }}"
+    state: directory
+    mode: o-rwx
+
+- name: Ensure "{{ duplicacy_path }}/bin"
+  ansible.builtin.file:
+    path: "{{ duplicacy_path }}/bin"
+    state: directory
+    mode: o-rwx
+
+- name: Ensure install duplicacy
+  ansible.builtin.get_url:
+    url: "https://github.com/gilbertchen/duplicacy/releases/download/v{{ duplicacy_version }}/duplicacy_linux_x64_{{ duplicacy_version }}"
+    dest: "{{ duplicacy_path }}/bin/duplicacy"
+    mode: ug+x,o-rwx
+
+- name: Ensure working directory
+  ansible.builtin.file:
+    path: "{{ duplicacy_working_directory }}"
+    state: directory
+    mode: o-rwx
+
+- name: Ensure init script
+  ansible.builtin.template:
+    src: duplicacy-init.sh.j2
+    dest: "{{ duplicacy_script_file_path }}/duplicacy-init.sh"
+    mode: ug+x,o-rwx
+
+- name: Ensure backup script
+  ansible.builtin.template:
+    src: duplicacy-backup.sh.j2
+    dest: "{{ duplicacy_script_file_path }}/duplicacy-backup.sh"
+    mode: ug+x,o-rwx
+
+- name: Ensure prune script
+  ansible.builtin.template:
+    src: duplicacy-prune.sh.j2
+    dest: "{{ duplicacy_script_file_path }}/duplicacy-prune.sh"
+    mode: ug+x,o-rwx
+
+...
+
