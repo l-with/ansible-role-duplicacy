@@ -1,21 +1,25 @@
 ---
 
-duplicacy_init_options:              ''
-duplicacy_backup_options:     ''
+duplicacy_version:                      2.7.2
+duplicacy_path:                         /srv/duplicacy
+duplicacy_init_options:                 ''
+duplicacy_backup_options:               ''
 duplicacy_repository:                   "{{ duplicacy_working_directory }}"
-duplicacy_secret_file_path:             '/srv/duplicacy/secret'
+duplicacy_secret_file_path:             "{{ duplicacy_path }}/secret"
 duplicacy_secret_file_force:            false
 duplicacy_onedrive_token_file_name:     'one-token.json'
 duplicacy_ssh_key_file_name:            'id'
 duplicacy_backup_immediately:           false
 duplicacy_backup_schedule:              '0 1 * * *'
-duplicacy_script_file_path:             '/srv/duplicacy/scripts'
+duplicacy_script_file_path:             '{{ duplicacy_path }}/scripts'
 duplicacy_pre_backup_script_file_name:  'pre-backup.sh'
 duplicacy_post_backup_script_file_name: 'post-backup.sh'
+duplicacy_pre_prune_script_file_name:   'pre-prune.sh'
+duplicacy_post_prune_script_file_name:  'post-prune.sh'
 duplicacy_prune_options:                '-keep 365:3650 -keep 30:365 -keep 7:30 -keep 1:7 -a'
 duplicacy_prune_schedule:               '0 4 * * *'
 
-duplciacy_storage_backends:
+duplicacy_storage_backends:
   - 'Local disk'
   - 'Blackblaze B2'
   - 'SSH/SFTP Password'
