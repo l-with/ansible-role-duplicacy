@@ -36,6 +36,19 @@
       duplicacy_working_directory: "{{ playbook_dir }}/.data-local"
       duplicacy_backup_immediately: true
       duplicacy_storage_backend: 'Local disk'
+      duplicacy_pre_backup_script_file_content: |
+        #!/bin/sh
+        echo pre-backup
+      duplicacy_post_backup_script_file_content: |
+        #!/bin/sh
+        echo post-backup
+      duplicacy_pre_prune_script_file_content: |
+        #!/bin/sh
+        echo pre-prune
+        exit 2
+      duplicacy_post_prune_script_file_content: |
+        #!/bin/sh
+        echo post-prune
     when: test_backend == 'Local disk'
 
   - name: Backblaze B2
