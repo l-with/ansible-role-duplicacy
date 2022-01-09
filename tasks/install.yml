@@ -4,13 +4,13 @@
   ansible.builtin.file:
     path: "{{ duplicacy_path }}"
     state: directory
-    mode: o-rwx
+    mode:  o-rwx
 
 - name: Ensure "{{ duplicacy_path }}/bin"
   ansible.builtin.file:
     path: "{{ duplicacy_path }}/bin"
     state: directory
-    mode: o-rwx
+    mode:  o-rwx
 
 - name: Ensure install duplicacy
   ansible.builtin.get_url:
@@ -22,49 +22,49 @@
   ansible.builtin.file:
     path: "{{ duplicacy_working_directory }}"
     state: directory
-    mode: o-rwx
+    mode:  o-rwx
 
 - name: Ensure init script
   ansible.builtin.template:
-    src: duplicacy-init.sh.j2
+    src:  duplicacy-init.sh.j2
     dest: "{{ duplicacy_script_file_path }}/duplicacy-init.sh"
     mode: ug+x,o-rwx
 
 - name: Ensure backup script
   ansible.builtin.template:
-    src: duplicacy-backup.sh.j2
+    src:  duplicacy-backup.sh.j2
     dest: "{{ duplicacy_script_file_path }}/duplicacy-backup.sh"
     mode: ug+x,o-rwx
 
 - name: Ensure prune script
   ansible.builtin.template:
-    src: duplicacy-prune.sh.j2
+    src:  duplicacy-prune.sh.j2
     dest: "{{ duplicacy_script_file_path }}/duplicacy-prune.sh"
     mode: ug+x,o-rwx
 
 - name: Ensure backup schedule
   ansible.builtin.cron:
-    name: duplicacy backup
-    job: "{{ duplicacy_script_file_path }}/duplicacy-backup.sh"
+    name:      duplicacy backup
+    job:       "{{ duplicacy_script_file_path }}/duplicacy-backup.sh"
     cron_file: ansible-duplicacy-backup
-    user: "{{ duplicacy_backup_schedule_user }}"
-    hour: "{{ duplicacy_backup_schedule_hour }}"
-    minute: "{{ duplicacy_backup_schedule_minute }}"
-    day: "{{ duplicacy_backup_schedule_day }}"
-    weekday: "{{ duplicacy_backup_schedule_weekday }}"
-    month: "{{ duplicacy_backup_schedule_month }}"
+    user:      "{{ duplicacy_backup_schedule_user }}"
+    hour:      "{{ duplicacy_backup_schedule_hour }}"
+    minute:    "{{ duplicacy_backup_schedule_minute }}"
+    day:       "{{ duplicacy_backup_schedule_day }}"
+    weekday:   "{{ duplicacy_backup_schedule_weekday }}"
+    month:     "{{ duplicacy_backup_schedule_month }}"
 
 - name: Ensure prune schedule
   ansible.builtin.cron:
-    name: duplicacy prune
-    job: "{{ duplicacy_script_file_path }}/duplicacy-prune.sh"
+    name:      duplicacy prune
+    job:       "{{ duplicacy_script_file_path }}/duplicacy-prune.sh"
     cron_file: ansible-duplicacy-prune
-    user: "{{ duplicacy_prune_schedule_user }}"
-    hour: "{{ duplicacy_prune_schedule_hour }}"
-    minute: "{{ duplicacy_prune_schedule_minute }}"
-    day: "{{ duplicacy_prune_schedule_day }}"
-    weekday: "{{ duplicacy_prune_schedule_weekday }}"
-    month: "{{ duplicacy_prune_schedule_month }}"
+    user:      "{{ duplicacy_prune_schedule_user }}"
+    hour:      "{{ duplicacy_prune_schedule_hour }}"
+    minute:    "{{ duplicacy_prune_schedule_minute }}"
+    day:       "{{ duplicacy_prune_schedule_day }}"
+    weekday:   "{{ duplicacy_prune_schedule_weekday }}"
+    month:     "{{ duplicacy_prune_schedule_month }}"
 
 ...
 
