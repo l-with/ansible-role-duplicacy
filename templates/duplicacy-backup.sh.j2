@@ -14,12 +14,12 @@ export {{ _env }}="{{ _duplicacy_env_special[_env] }}"
 {% endfor %}
 
 # pre backup
-if [[ -f {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }} ]]; then
+if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }} ]; then
     sh {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }}
     status=$?
 fi
 
-if [[ $status != 0 ]]; then
+if [ $status != 0 ]; then
     echo "Pre-backup script exited with status code $status. Not performing backup." >&2
     exit $status
 fi
@@ -28,7 +28,7 @@ fi
 {{ duplicacy_path }}/bin/duplicacy backup {{ duplicacy_backup_options }}
 
 # post backup
-if [[ -f {{ duplicacy_script_file_path }}/{{ duplicacy_post_backup_script_file_name }} ]]; then
+if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_post_backup_script_file_name }} ]; then
     sh {{ duplicacy_script_file_path }}/{{ duplicacy_post_backup_script_file_name }}
     status=$?
     exit $status
