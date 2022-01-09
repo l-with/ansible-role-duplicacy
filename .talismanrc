@@ -1,0 +1,57 @@
+fileignoreconfig:
+
+- filename: defaults/main.yml
+  allowed_patterns:
+  - >
+    duplicacy_secret_file_path: +"{{ duplicacy_path }}/secret"
+  - >
+    duplicacy_secret_file_force: +false
+  - >
+    duplicacy_ssh_key_file_name: +'id'
+
+- filename: tasks/main.yml
+  allowed_patterns:
+  - >
+    DUPLICACY_PASSWORD: "{{ duplicacy_password }}"
+  - >
+    DUPLICACY_B2_KEY: "{{ duplicacy_b2_key }}"
+  - >
+    DUPLICACY_SSH_PASSWORD: "{{ duplicacy_ssh_password }}"
+  - >
+    DUPLICACY_SSH_KEY_FILE: "{{ duplicacy_secret_file_path }}/{{ duplicacy_ssh_key_file_name }}"
+  - >
+    DUPLICACY_SSH_PASSPHRASE: "{{ duplicacy_ssh_passphrase }}"
+  - >
+    _duplicacy_secret_file_name: "{{ duplicacy_ssh_key_file_name }}"
+  - >
+    _duplicacy_secret_file_name: "{{ duplicacy_onedrive_token_file_name }}"
+
+- filename: README.md
+  allowed_patterns:
+  - SSH\/SFTP Keyfile
+  - SSH\/SFTP Password
+  - backup
+  - secret
+  - key
+  - password
+  - passphrase
+  - pass
+
+- filename: templates/duplicacy-backup.sh.j2
+  ignore_detectors: [filename]
+
+- filename: templates/post-backup.sh.j2
+  ignore_detectors: [filename]
+
+- filename: templates/pre-backup.sh.j2
+  ignore_detectors: [filename]
+
+- filename: test/playbook.yml
+  allowed_patterns:
+  - >
+    duplicacy_password: duplicacy_pasword
+  - >
+    duplicacy_secret_file_path: "{{ playbook_dir }}/.\w+"
+
+- filename: test/ssh_sftp_password.yml
+  ignore_detectors: [filename]
