@@ -49,9 +49,9 @@ fileignoreconfig:
 - filename: test/playbook.yml
   allowed_patterns:
   - >
-    duplicacy_password: duplicacy_pasword
+    duplicacy_password: +duplicacy_pasword
   - >
-    duplicacy_secret_file_path: "{{ playbook_dir }}/.\w+"
+    duplicacy_secret_file_path: +"{{ playbook_dir }}/.\w+"
 
 - filename: test/ssh_sftp_password.yml
   ignore_detectors: [filename]

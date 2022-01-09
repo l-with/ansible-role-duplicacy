@@ -13,30 +13,30 @@
     ansible.builtin.include_role:
       name: ../../ansible-role-duplicacy
     vars:
-      duplicacy_snapshot_id: "duplicacy-backup"
-      duplicacy_storage_url: "{{ playbook_dir }}/.backup"
-      duplicacy_repository: "{{ playbook_dir }}/repository"
-      duplicacy_init_options: '-repository /repository'
-      duplicacy_password: duplicacy_pasword
-      duplicacy_working_directory: "{{ playbook_dir }}/.data-ni"
-      duplicacy_backup_immediately: 'yes'
-      duplicacy_storage_backend: 'Not implemented'
-    when: test_backend ==  'Not implemented'
+      duplicacy_snapshot_id:        "duplicacy-backup"
+      duplicacy_storage_url:        "{{ playbook_dir }}/.backup"
+      duplicacy_repository:         "{{ playbook_dir }}/repository"
+      duplicacy_init_options:       '-repository /repository'
+      duplicacy_password:           duplicacy_pasword
+      duplicacy_working_directory:  "{{ playbook_dir }}/.data-ni"
+      duplicacy_backup_immediately: true
+      duplicacy_storage_backend:    'Not implemented'
+    when: test_backend == 'Not implemented'
 
   - name: Local disk
     ansible.builtin.include_role:
       name: ../../ansible-role-duplicacy
     vars:
-      duplicacy_path: "{{ playbook_dir }}/.srv-local"
-      duplicacy_script_file_path: "{{ playbook_dir }}/.srv-local/scripts"
-      duplicacy_snapshot_id: "duplicacy-backup"
-      duplicacy_storage_url: "{{ playbook_dir }}/.backup"
-      duplicacy_repository: "{{ playbook_dir }}/repository"
-      duplicacy_init_options: "-repository {{ playbook_dir }}/repository" 
-      duplicacy_password: duplicacy_pasword
-      duplicacy_working_directory: "{{ playbook_dir }}/.data-local"
+      duplicacy_path:               "{{ playbook_dir }}/.srv-local"
+      duplicacy_script_file_path:   "{{ playbook_dir }}/.srv-local/scripts"
+      duplicacy_snapshot_id:        "duplicacy-backup"
+      duplicacy_storage_url:        "{{ playbook_dir }}/.backup"
+      duplicacy_repository:         "{{ playbook_dir }}/repository"
+      duplicacy_init_options:       "-repository {{ playbook_dir }}/repository" 
+      duplicacy_password:           duplicacy_pasword
+      duplicacy_working_directory:  "{{ playbook_dir }}/.data-local"
       duplicacy_backup_immediately: true
-      duplicacy_storage_backend: 'Local disk'
+      duplicacy_storage_backend:    'Local disk'
       duplicacy_pre_backup_script_file_content: |
         #!/bin/sh
         echo pre-backup
@@ -56,62 +56,62 @@
     ansible.builtin.include_role:
       name: ../../ansible-role-duplicacy
     vars:
-      duplicacy_path: "{{ playbook_dir }}/.srv-b2"
-      duplicacy_script_file_path: "{{ playbook_dir }}/.srv-b2/scripts"
-      duplicacy_snapshot_id: "duplicacy-backup"
-      duplicacy_repository: "{{ playbook_dir }}/repository"
-      duplicacy_init_options: "-repository {{ playbook_dir }}/repository" 
-      duplicacy_password: duplicacy_pasword
-      duplicacy_working_directory: "{{ playbook_dir }}/.data-b2"
-      duplicacy_backup_immediately: 'yes'
-      duplicacy_storage_backend: 'Blackblaze B2'
+      duplicacy_path:               "{{ playbook_dir }}/.srv-b2"
+      duplicacy_script_file_path:   "{{ playbook_dir }}/.srv-b2/scripts"
+      duplicacy_snapshot_id:        "duplicacy-backup"
+      duplicacy_repository:         "{{ playbook_dir }}/repository"
+      duplicacy_init_options:       "-repository {{ playbook_dir }}/repository" 
+      duplicacy_password:           duplicacy_pasword
+      duplicacy_working_directory:  "{{ playbook_dir }}/.data-b2"
+      duplicacy_backup_immediately: true
+      duplicacy_storage_backend:    'Blackblaze B2'
     when: test_backend == 'Blackblaze B2'
 
   - name: SSH/SFTP Password
     ansible.builtin.include_role:
       name: ../../ansible-role-duplicacy
     vars:
-      duplicacy_path: "{{ playbook_dir }}/.srv-ssh_password"
-      duplicacy_script_file_path: "{{ playbook_dir }}/.srv-ssh_password/scripts"
-      duplicacy_snapshot_id: "duplicacy-backup"
-      duplicacy_repository: "{{ playbook_dir }}/repository"
-      duplicacy_init_options: "-repository {{ playbook_dir }}/repository" 
-      duplicacy_password: duplicacy_pasword
-      duplicacy_working_directory: "{{ playbook_dir }}/.data-ssh_password"
-      duplicacy_backup_immediately: 'yes'
-      duplicacy_storage_backend: 'SSH/SFTP Password'
+      duplicacy_path:               "{{ playbook_dir }}/.srv-ssh_password"
+      duplicacy_script_file_path:   "{{ playbook_dir }}/.srv-ssh_password/scripts"
+      duplicacy_snapshot_id:        "duplicacy-backup"
+      duplicacy_repository:         "{{ playbook_dir }}/repository"
+      duplicacy_init_options:       "-repository {{ playbook_dir }}/repository" 
+      duplicacy_password:           duplicacy_pasword
+      duplicacy_working_directory:  "{{ playbook_dir }}/.data-ssh_password"
+      duplicacy_backup_immediately: true
+      duplicacy_storage_backend:    'SSH/SFTP Password'
     when: test_backend == 'SSH/SFTP Password'
 
   - name: SSH/SFTP Keyfile
     ansible.builtin.include_role:
       name: ../../ansible-role-duplicacy
     vars:
-      duplicacy_path: "{{ playbook_dir }}/.srv-ssh_key"
-      duplicacy_script_file_path: "{{ playbook_dir }}/.srv-ssh_key/scripts"
-      duplicacy_snapshot_id: "duplicacy-backup"
-      duplicacy_repository: "{{ playbook_dir }}/repository"
-      duplicacy_init_options: "-repository {{ playbook_dir }}/repository" 
-      duplicacy_password: duplicacy_pasword
-      duplicacy_working_directory: "{{ playbook_dir }}/.data-ssh_key"
-      duplicacy_backup_immediately: 'yes'
-      duplicacy_storage_backend: 'SSH/SFTP Keyfile'
-      duplicacy_secret_file_path: "{{ playbook_dir }}/.secret"
+      duplicacy_path:               "{{ playbook_dir }}/.srv-ssh_key"
+      duplicacy_script_file_path:   "{{ playbook_dir }}/.srv-ssh_key/scripts"
+      duplicacy_snapshot_id:        "duplicacy-backup"
+      duplicacy_repository:         "{{ playbook_dir }}/repository"
+      duplicacy_init_options:       "-repository {{ playbook_dir }}/repository" 
+      duplicacy_password:           duplicacy_pasword
+      duplicacy_working_directory:  "{{ playbook_dir }}/.data-ssh_key"
+      duplicacy_backup_immediately: true
+      duplicacy_storage_backend:    'SSH/SFTP Keyfile'
+      duplicacy_secret_file_path:   "{{ playbook_dir }}/.secret"
     when: test_backend == 'SSH/SFTP Keyfile'
 
   - name: Onedrive Keyfile
     ansible.builtin.include_role:
       name: ../../ansible-role-duplicacy
     vars:
-      duplicacy_path: "{{ playbook_dir }}/.srv-onedrive"
-      duplicacy_script_file_path: "{{ playbook_dir }}/.srv-onedrive/scripts"
-      duplicacy_snapshot_id: "duplicacy-backup"
-      duplicacy_repository: "{{ playbook_dir }}/repository"
-      duplicacy_init_options: "-repository {{ playbook_dir }}/repository" 
-      duplicacy_password: duplicacy_pasword
-      duplicacy_working_directory: "{{ playbook_dir }}/.data-onedrive"
-      duplicacy_backup_immediately: 'yes'
-      duplicacy_storage_backend: 'Onedrive'
-      duplicacy_secret_file_path: "{{ playbook_dir }}/.secret"
+      duplicacy_path:               "{{ playbook_dir }}/.srv-onedrive"
+      duplicacy_script_file_path:   "{{ playbook_dir }}/.srv-onedrive/scripts"
+      duplicacy_snapshot_id:        "duplicacy-backup"
+      duplicacy_repository:         "{{ playbook_dir }}/repository"
+      duplicacy_init_options:       "-repository {{ playbook_dir }}/repository" 
+      duplicacy_password:           duplicacy_pasword
+      duplicacy_working_directory:  "{{ playbook_dir }}/.data-onedrive"
+      duplicacy_backup_immediately: true
+      duplicacy_storage_backend:    'Onedrive'
+      duplicacy_secret_file_path:    "{{ playbook_dir }}/.secret"
     when: test_backend == 'Onedrive'
 
 ...
