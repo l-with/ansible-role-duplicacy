@@ -1,0 +1,7 @@
+# VS Code
+.dccache
+
+# test
+test/.*
+test/.backup
+test/data/.duplicacy
