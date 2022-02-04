@@ -1,9 +1,10 @@
 # Ansible Role Duplicacy
 
-install and configure duplicacy
+install and configure [duplicacy](https://github.com/gilbertchen/duplicacy)
 
-# Role Variables
+## Role Variables
 
+<!-- markdownlint-disable MD033 -->
 | group | variable | default | description |
 | --- | --- | ---| --- |
 | install | duplicacy_version | `2.7.2` | the duplicacy version to install |
@@ -46,25 +47,32 @@ install and configure duplicacy
 | prune | duplicacy_pre_prune_script_file_content |  | the content for the pre prune script |
 | prune | duplicacy_post_prune_script_file_name | `post-prune.sh` | the filename for the post prune script |
 | prune | duplicacy_post_prune_script_file_content |  | the content for the post prune script |
+<!-- markdownlint-enable MD033 -->
 
 ## Test
 
 This role can be tested by
+
 ```bash
 ansible-playbook test/playbook.yml -e "test_backend='Not implemented'"
 ```
+
 ```bash
 ansible-playbook test/playbook.yml -e "test_backend='Local disk'"
 ```
+
 ```bash
 ansible-playbook test/playbook.yml -e "test_backend='Blackblaze B2'" -e@test/.blackblaze_b2.yml
 ```
+
 ```bash
 ansible-playbook test/playbook.yml -e "test_backend='SSH/SFTP Password'" -e@test/.ssh_sftp_password.yml
 ```
+
 ```bash
 ansible-playbook test/playbook.yml -e "test_backend='SSH/SFTP Keyfile'" -e@test/.ssh_sftp_key.yml
 ```
+
 ```bash
 ansible-playbook test/playbook.yml -e "test_backend='Onedrive'" -e@test/.onedrive.yml
 ```
