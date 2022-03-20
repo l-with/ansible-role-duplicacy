@@ -1,7 +1,7 @@
 ---
 
 duplicacy_version:                      2.7.2
-duplicacy_path:                         /srv/duplicacy
+duplicacy_path:                         /opt/duplicacy
 duplicacy_init_options:                 ''
 duplicacy_backup_options:               ''
 duplicacy_repository:                   "{{ duplicacy_working_directory }}"

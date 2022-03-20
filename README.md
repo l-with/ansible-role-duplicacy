@@ -8,7 +8,7 @@ install and configure [duplicacy](https://github.com/gilbertchen/duplicacy)
 | group | variable | default | description |
 | --- | --- | ---| --- |
 | install | duplicacy_version | `2.7.2` | the duplicacy version to install |
-| install | duplicacy_path | `/srv/duplicacy` | the path to install duplicacy |
+| install | duplicacy_path | `/opt/duplicacy` | the path to install duplicacy |
 | backup | duplicacy_snapshot_id | | the `<snapshot id>` for `duplicacy init` |
 | backup | duplicacy_working_directory | | the working directory for duplicacy which is the default path for the repository to backup |
 | backup | duplicacy_password | | the value for `DUPLICACY_PASSWORD`, e.g. the passphrase to encrypt the backups with before they are stored remotely |

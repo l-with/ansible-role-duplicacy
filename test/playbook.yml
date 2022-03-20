@@ -27,8 +27,8 @@
     ansible.builtin.include_role:
       name: ../../ansible-role-duplicacy
     vars:
-      duplicacy_path:               "{{ playbook_dir }}/.srv-local"
-      duplicacy_script_file_path:   "{{ playbook_dir }}/.srv-local/scripts"
+      duplicacy_path:               "{{ playbook_dir }}/.opt-local"
+      duplicacy_script_file_path:   "{{ playbook_dir }}/.opt-local/scripts"
       duplicacy_snapshot_id:        "duplicacy-backup"
       duplicacy_storage_url:        "{{ playbook_dir }}/.backup"
       duplicacy_repository:         "{{ playbook_dir }}/repository"
@@ -56,8 +56,8 @@
     ansible.builtin.include_role:
       name: ../../ansible-role-duplicacy
     vars:
-      duplicacy_path:               "{{ playbook_dir }}/.srv-b2"
-      duplicacy_script_file_path:   "{{ playbook_dir }}/.srv-b2/scripts"
+      duplicacy_path:               "{{ playbook_dir }}/.opt-b2"
+      duplicacy_script_file_path:   "{{ playbook_dir }}/.opt-b2/scripts"
       duplicacy_snapshot_id:        "duplicacy-backup"
       duplicacy_repository:         "{{ playbook_dir }}/repository"
       duplicacy_init_options:       "-repository {{ playbook_dir }}/repository" 
@@ -71,8 +71,8 @@
     ansible.builtin.include_role:
       name: ../../ansible-role-duplicacy
     vars:
-      duplicacy_path:               "{{ playbook_dir }}/.srv-ssh_password"
-      duplicacy_script_file_path:   "{{ playbook_dir }}/.srv-ssh_password/scripts"
+      duplicacy_path:               "{{ playbook_dir }}/.opt-ssh_password"
+      duplicacy_script_file_path:   "{{ playbook_dir }}/.opt-ssh_password/scripts"
       duplicacy_snapshot_id:        "duplicacy-backup"
       duplicacy_repository:         "{{ playbook_dir }}/repository"
       duplicacy_init_options:       "-repository {{ playbook_dir }}/repository" 
@@ -86,8 +86,8 @@
     ansible.builtin.include_role:
       name: ../../ansible-role-duplicacy
     vars:
-      duplicacy_path:               "{{ playbook_dir }}/.srv-ssh_key"
-      duplicacy_script_file_path:   "{{ playbook_dir }}/.srv-ssh_key/scripts"
+      duplicacy_path:               "{{ playbook_dir }}/.opt-ssh_key"
+      duplicacy_script_file_path:   "{{ playbook_dir }}/.opt-ssh_key/scripts"
       duplicacy_snapshot_id:        "duplicacy-backup"
       duplicacy_repository:         "{{ playbook_dir }}/repository"
       duplicacy_init_options:       "-repository {{ playbook_dir }}/repository" 
@@ -102,8 +102,8 @@
     ansible.builtin.include_role:
       name: ../../ansible-role-duplicacy
     vars:
-      duplicacy_path:               "{{ playbook_dir }}/.srv-onedrive"
-      duplicacy_script_file_path:   "{{ playbook_dir }}/.srv-onedrive/scripts"
+      duplicacy_path:               "{{ playbook_dir }}/.opt-onedrive"
+      duplicacy_script_file_path:   "{{ playbook_dir }}/.opt-onedrive/scripts"
       duplicacy_snapshot_id:        "duplicacy-backup"
       duplicacy_repository:         "{{ playbook_dir }}/repository"
       duplicacy_init_options:       "-repository {{ playbook_dir }}/repository" 
