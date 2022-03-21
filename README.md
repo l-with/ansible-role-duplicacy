@@ -2,6 +2,9 @@
 
 install and configure [duplicacy](https://github.com/gilbertchen/duplicacy)
 
+The role install duplciacy and three scripts for duplicacy init, duplicacy backup and duplicacy prune.
+The backup and the prune scripts conditionally execute pre and post scripts if they exists (the builtin mechanism from duplicacy for pre and post commands is not used).
+
 ## Role Variables
 
 <!-- markdownlint-disable MD033 -->
