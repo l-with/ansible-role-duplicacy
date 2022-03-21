@@ -4,7 +4,7 @@ install and configure [duplicacy](https://github.com/gilbertchen/duplicacy)
 
 The role installs duplicacy and three scripts for `duplicacy init`, `duplicacy backup` and `duplicacy prune`.
 The pre and post scripts by default are placed in the duplicacy working directory at `.duplicacy/scripts` to be used by the builtin mechanism from duplicacy for pre and post commands.
-Then can be placed in `duplicacy_scriptfile_path` and then will be executed by the `duplicacy backup` or `duplicacy prune` script.
+They can be placed in `duplicacy_scriptfile_path` and then will be executed by the `duplicacy backup` or `duplicacy prune` script.
 
 The output of `duplicacy backup` is placed in `backup.log` and the output of `duplicacy prune` in `prune.log` in the working directory of duplicacy.
 
