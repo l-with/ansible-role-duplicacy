@@ -14,4 +14,4 @@ export {{ _env }}="{{ _duplicacy_env_special[_env] }}"
 {% endfor %}
 
 # prune
-{{ duplicacy_path }}/bin/duplicacy prune {{ duplicacy_prune_options }}
+{{ duplicacy_path }}/bin/duplicacy -log prune {{ duplicacy_prune_options }}
