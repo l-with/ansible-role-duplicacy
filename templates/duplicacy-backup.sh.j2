@@ -15,7 +15,7 @@ export {{ _env }}="{{ _duplicacy_env_special[_env] }}"
 
 # pre backup
 if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }} ]; then
-    sh {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }}
+    bash {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }}
     status=$?
 fi
 
@@ -29,7 +29,7 @@ fi
 
 # post backup
 if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_post_backup_script_file_name }} ]; then
-    sh {{ duplicacy_script_file_path }}/{{ duplicacy_post_backup_script_file_name }}
+    bash {{ duplicacy_script_file_path }}/{{ duplicacy_post_backup_script_file_name }}
     status=$?
     exit $status
 fi
