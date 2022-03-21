@@ -2,8 +2,10 @@
 
 install and configure [duplicacy](https://github.com/gilbertchen/duplicacy)
 
-The role install duplciacy and three scripts for duplicacy init, duplicacy backup and duplicacy prune.
-The backup and the prune scripts conditionally execute pre and post scripts if they exists (the builtin mechanism from duplicacy for pre and post commands is not used).
+The role installs duplicacy and three scripts for `duplicacy init`, `duplicacy backup` and `duplicacy prune`.
+The pre and post scripts are placed in the duplicacy working directory at `.duplicacy/scripts` to be used by the builtin mechanism from duplicacy for pre and post commands.
+
+The output of `duplicacy backup` is placed in `backup.log` and the output of `duplicacy prune` in `prune.log` in the working directory of duplicacy.
 
 ## Role Variables
 
@@ -34,10 +36,8 @@ The backup and the prune scripts conditionally execute pre and post scripts if t
 | backup | duplicacy_backup_schedule_day | `*` | the cron schedule day for duplicacy backups |
 | backup | duplicacy_backup_schedule_weekday | `*` | the cron schedule weekday for duplicacy backups |
 | backup | duplicacy_backup_schedule_month | `*` | the cron schedule month for duplicacy backups |
-| backup | duplicacy_scriptfile_path | `"{{ duplicacy_path }}/scripts"` | the path where the scripts are create |
-| backup | duplicacy_pre_backup_script_file_name | `pre-backup.sh` | the filename for the pre backup script |
+| backup | duplicacy_scriptfile_path | `"{{ duplicacy_path }}/scripts"` | the path where the scripts for `duplicacy init`, `duplicacy backup` and `duplicacy prune` are created |
 | backup | duplicacy_pre_backup_script_file_content |  | the content for the pre backup script |
-| backup | duplicacy_post_backup_script_file_name | `post-backup.sh` | the filename for the post backup script |
 | backup | duplicacy_post_backup_script_file_content |  | the content for the post backup script |
 | prune | duplicacy_prune_options | `-keep 365:3650 -keep 30:365 -keep 7:30 -keep 1:7 -a` | the options for `duplicacy prune` |
 | prune | duplicacy_prune_schedule_user | `root` | the cron schedule user for duplicacy prunes |
