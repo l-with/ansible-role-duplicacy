@@ -3,7 +3,8 @@
 install and configure [duplicacy](https://github.com/gilbertchen/duplicacy)
 
 The role installs duplicacy and three scripts for `duplicacy init`, `duplicacy backup` and `duplicacy prune`.
-The pre and post scripts are placed in the duplicacy working directory at `.duplicacy/scripts` to be used by the builtin mechanism from duplicacy for pre and post commands.
+The pre and post scripts by default are placed in the duplicacy working directory at `.duplicacy/scripts` to be used by the builtin mechanism from duplicacy for pre and post commands.
+Then can be placed in `duplicacy_scriptfile_path` and then will be executed by the `duplicacy backup` or `duplicacy prune` script.
 
 The output of `duplicacy backup` is placed in `backup.log` and the output of `duplicacy prune` in `prune.log` in the working directory of duplicacy.
 
@@ -37,8 +38,18 @@ The output of `duplicacy backup` is placed in `backup.log` and the output of `du
 | backup | duplicacy_backup_schedule_weekday | `*` | the cron schedule weekday for duplicacy backups |
 | backup | duplicacy_backup_schedule_month | `*` | the cron schedule month for duplicacy backups |
 | backup | duplicacy_scriptfile_path | `"{{ duplicacy_path }}/scripts"` | the path where the scripts for `duplicacy init`, `duplicacy backup` and `duplicacy prune` are created |
+| backup | duplicacy_pre_backup_script_file_name | `'pre-backup'` | the file name of the pre backup script |
+| backup | duplicacy_pre_backup_script_file | `"{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_backup_script_file_name }}"` | the pre backup script file |
+| backup | duplicacy_post_backup_script_file_name | `'post-backup'` | the file name of the post backup script |
+| backup | duplicacy_post_backup_script_file | `"{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_backup_script_file_name }}"` | the post backup script file |
+| backup | duplicacy_pre_prune_script_file_name | `'pre-prune'` | the file name of the pre prune script |
+| backup | duplicacy_pre_prune_script_file | `"{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_prune_script_file_name }}"` | the pre prune script file |
+| backup | duplicacy_post_prune_script_file_name | `'post-prune'` | the file name of the post backup script |
+| backup | duplicacy_post_prune_script_file | `"{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_backup_script_file_name }}"` | the post backup script file |
 | backup | duplicacy_pre_backup_script_file_content |  | the content for the pre backup script |
 | backup | duplicacy_post_backup_script_file_content |  | the content for the post backup script |
+| backup | duplicacy_pre_prune_script_file_content |  | the content for the pre prune script |
+| backup | duplicacy_post_prune_script_file_content |  | the content for the post prune script |
 | prune | duplicacy_prune_options | `-keep 365:3650 -keep 30:365 -keep 7:30 -keep 1:7 -a` | the options for `duplicacy prune` |
 | prune | duplicacy_prune_schedule_user | `root` | the cron schedule user for duplicacy prunes |
 | prune | duplicacy_prune_schedule_hour | `4` | the cron schedule hour for duplicacy prunes |
