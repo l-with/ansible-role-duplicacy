@@ -11,42 +11,6 @@
     state: directory
     mode: o-rwx
 
-- name: Ensure {{ duplicacy_pre_backup_script_file_name }}
-  ansible.builtin.template:
-    src:  pre-post-script.sh.j2
-    dest: "{{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }}"
-    mode: ug+x,o-rwx
-  vars:
-    _duplicacy_pre_post_script_file_content: "{{ duplicacy_pre_backup_script_file_content }}"
-  when: duplicacy_pre_backup_script_file_content is defined
-
-- name: Ensure {{ duplicacy_post_backup_script_file_name }}
-  ansible.builtin.template:
-    src:  pre-post-script.sh.j2
-    dest: "{{ duplicacy_script_file_path }}/{{ duplicacy_post_backup_script_file_name }}"
-    mode: ug+x,o-rwx
-  vars:
-    _duplicacy_pre_post_script_file_content: "{{ duplicacy_post_backup_script_file_content }}"
-  when: duplicacy_post_backup_script_file_content is defined
-
-- name: Ensure {{ duplicacy_pre_prune_script_file_name }}
-  ansible.builtin.template:
-    src:  pre-post-script.sh.j2
-    dest: "{{ duplicacy_script_file_path }}/{{ duplicacy_pre_prune_script_file_name }}"
-    mode: ug+x,o-rwx
-  vars:
-    _duplicacy_pre_post_script_file_content: "{{ duplicacy_pre_prune_script_file_content }}"
-  when: duplicacy_pre_prune_script_file_content is defined
-
-- name: Ensure {{ duplicacy_post_prune_script_file_name }}
-  ansible.builtin.template:
-    src:  pre-post-script.sh.j2
-    dest: "{{ duplicacy_script_file_path }}/{{ duplicacy_post_prune_script_file_name }}"
-    mode: ug+x,o-rwx
-  vars:
-    _duplicacy_pre_post_script_file_content: "{{ duplicacy_post_prune_script_file_content }}"
-  when: duplicacy_post_prune_script_file_content is defined
-
 - name: Set _duplicacy_env_init
   ansible.builtin.set_fact:
     _duplicacy_env_init:
@@ -122,6 +86,9 @@
     cmd: "{{ duplicacy_script_file_path }}/duplicacy-init.sh"
   args:
     creates: "{{ duplicacy_working_directory }}/.duplicacy/preferences"
+
+- name: Include pre and post script tasks
+  include_tasks: pre_post.yml
 
 - name: Ensure duplicacy backup
   ansible.builtin.command:

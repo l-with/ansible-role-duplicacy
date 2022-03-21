@@ -4,6 +4,7 @@ duplicacy_version:                      2.7.2
 duplicacy_path:                         /opt/duplicacy
 duplicacy_init_options:                 ''
 duplicacy_backup_options:               ''
+# duplicacy_working_directory:
 duplicacy_repository:                   "{{ duplicacy_working_directory }}"
 duplicacy_secret_file_path:             "{{ duplicacy_path }}/secret"
 duplicacy_secret_file_force:            false
@@ -17,10 +18,6 @@ duplicacy_backup_schedule_weekday:      "*"
 duplicacy_backup_schedule_month:        "*"
 duplicacy_backup_schedule_user:         root
 duplicacy_script_file_path:             '{{ duplicacy_path }}/scripts'
-duplicacy_pre_backup_script_file_name:  'pre-backup.sh'
-duplicacy_post_backup_script_file_name: 'post-backup.sh'
-duplicacy_pre_prune_script_file_name:   'pre-prune.sh'
-duplicacy_post_prune_script_file_name:  'post-prune.sh'
 duplicacy_prune_options:                '-keep 365:3650 -keep 30:365 -keep 7:30 -keep 1:7 -a'
 duplicacy_prune_schedule_hour:          "4"
 duplicacy_prune_schedule_minute:        "0"
