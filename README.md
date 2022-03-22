@@ -20,7 +20,7 @@ The output of `duplicacy backup` is placed in `backup.log` and the output of `du
 | backup | duplicacy_password | | the value for `DUPLICACY_PASSWORD`, e.g. the passphrase to encrypt the backups with before they are stored remotely |
 | backup | duplicacy_storage_url | | the `<storage url>` for ´duplicacy init`, e.g. the [Duplicacy URI](https://github.com/gilbertchen/duplicacy/wiki/Storage-Backends) of where to store the backups |
 | backup | duplicacy_storage_backend | | the storage backend, possible values are  <br /><ol><li>`Local disk`</li><li>`Backblaze B2`</li><li>`SSH/SFTP Password`</li><li>`SSH/SFTP Keyfile`</li><li>`Onedrive`</li></ol> |
-| backup | duplicacy_init_options | `''` | the options for `duplicacy init` |
+| backup | duplicacy_init_options | `'-encrypt'` | the options for `duplicacy init` |
 | backup | duplicacy_repository_path | `"{{ duplicacy_working_directory }}"` | the `<path>` for `duplicacy ini -repository <path>` |
 | backup | duplicacy_secrets_file_path | `"{{ duplicacy_path }}/secret"` | the path where the token and the ssh-key files are created |
 | backup | duplicacy_secret_file_name | it depends on `duplicacy_autobackup_storage_backend` | the filename for the secret file, the default is <br /><ol><li>`Local disk`<br />irrelevant</li><li>`Backblaze B2`<br />irrelevant</li><li>`SSH/SFTP Password`<br />irrelevant</li><li>`SSH/SFTP Keyfile`<br />`"{{ duplicacy_ssh_key_file_name }}"`</li><li>`Onedrive`<br />`{{ duplicacy_onedrive_token_file_name }}`</li></ol> |

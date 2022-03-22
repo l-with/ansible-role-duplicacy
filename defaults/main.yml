@@ -2,7 +2,7 @@
 
 duplicacy_version:                      2.7.2
 duplicacy_path:                         /opt/duplicacy
-duplicacy_init_options:                 ''
+duplicacy_init_options:                 '-encrypt'
 duplicacy_backup_options:               ''
 # duplicacy_working_directory:
 duplicacy_repository:                   "{{ duplicacy_working_directory }}"
