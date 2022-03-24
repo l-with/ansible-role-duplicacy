@@ -11,10 +11,14 @@
     state: directory
     mode: o-rwx
 
+- name: Set _duplicacy_env
+  ansible.builtin.set_fact:
+    _duplicacy_env:
+      DUPLICACY_PASSWORD:     "{{ duplicacy_password }}"
+
 - name: Set _duplicacy_env_init
   ansible.builtin.set_fact:
     _duplicacy_env_init:
-      DUPLICACY_PASSWORD:     "{{ duplicacy_password }}"
       DUPLICACY_INIT_OPTIONS: "{{ duplicacy_init_options }}"
 
 - name: Set _duplicacy_env_backup
