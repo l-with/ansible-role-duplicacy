@@ -3,6 +3,11 @@
 # cd to working directory
 cd {{ duplicacy_working_directory }}
 
+# env
+{% for _env in _duplicacy_env %}
+export {{ _env }}="{{ _duplicacy_env[_env] }}"
+{% endfor %}
+
 # env init
 {% for _env in _duplicacy_env_init %}
 export {{ _env }}="{{ _duplicacy_env_init[_env] }}"

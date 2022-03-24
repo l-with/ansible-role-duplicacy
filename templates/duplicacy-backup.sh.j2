@@ -1,7 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
 # cd to working directory
 cd {{ duplicacy_working_directory }}
+
+# env
+{% for _env in _duplicacy_env %}
+export {{ _env }}="{{ _duplicacy_env[_env] }}"
+{% endfor %}
 
 # env backup
 {% for _env in _duplicacy_env_backup %}
@@ -15,7 +20,7 @@ export {{ _env }}="{{ _duplicacy_env_special[_env] }}"
 
 # pre backup
 if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }} ]; then
-    sh {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }}
+    bash {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }}
     status=$?
 fi
 
@@ -25,11 +30,11 @@ if [ $status != 0 ]; then
 fi
 
 # backup
-{{ duplicacy_path }}/bin/duplicacy backup {{ duplicacy_backup_options }}
+{{ duplicacy_path }}/bin/duplicacy -log backup {{ duplicacy_backup_options }} | tee backup.log
 
 # post backup
 if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_post_backup_script_file_name }} ]; then
-    sh {{ duplicacy_script_file_path }}/{{ duplicacy_post_backup_script_file_name }}
+    bash {{ duplicacy_script_file_path }}/{{ duplicacy_post_backup_script_file_name }}
     status=$?
     exit $status
 fi
