@@ -33,6 +33,7 @@ duplicacy_prune_schedule_day:           "*"
 duplicacy_prune_schedule_weekday:       "*"
 duplicacy_prune_schedule_month:         "*"
 duplicacy_prune_schedule_user:          root
+duplicacy_restore_options:              '-overwrite'
 
 duplicacy_storage_backends:
   - 'Local disk'

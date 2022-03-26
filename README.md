@@ -61,6 +61,7 @@ The output of `duplicacy backup` is placed in `backup.log` and the output of `du
 | prune | duplicacy_pre_prune_script_file_content |  | the content for the pre prune script |
 | prune | duplicacy_post_prune_script_file_name | `post-prune.sh` | the filename for the post prune script |
 | prune | duplicacy_post_prune_script_file_content |  | the content for the post prune script |
+| restore | duplicacy_restore_options | `'-overwrite'` | the options for `duplicacy restore` |
 <!-- markdownlint-enable MD033 -->
 
 ## Test
