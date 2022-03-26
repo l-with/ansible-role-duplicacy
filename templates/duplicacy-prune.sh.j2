@@ -19,6 +19,7 @@ export {{ _env }}="{{ _duplicacy_env_special[_env] }}"
 {% endfor %}
 
 # pre prune
+status=0
 if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_pre_prune_script_file_name }} ]; then
     bash {{ duplicacy_script_file_path }}/{{ duplicacy_pre_prune_script_file_name }}
     status=$?
