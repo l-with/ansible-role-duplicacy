@@ -42,6 +42,12 @@
     dest: "{{ duplicacy_script_file_path }}/duplicacy-prune.sh"
     mode: ug+x,o-rwx
 
+- name: Ensure restore script
+  ansible.builtin.template:
+    src:  duplicacy-restore.sh.j2
+    dest: "{{ duplicacy_script_file_path }}/duplicacy-restore.sh"
+    mode: ug+x,o-rwx
+
 - name: Ensure backup schedule
   ansible.builtin.cron:
     name:      duplicacy backup
