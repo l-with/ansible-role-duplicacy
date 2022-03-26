@@ -32,7 +32,7 @@ fi
 
 # restore
 export _duplicacy_backup_revision=$({{ duplicacy_path }}/bin/duplicacy list | tail -n 1 | cut -d " " -f 4)
-{{ duplicacy_path }}/bin/duplicacy restore {{ duplicacy_restore_options }} {{ duplicacy_snapshot_id }} -r $_duplicacy_backup_revision
+{{ duplicacy_path }}/bin/duplicacy -log restore {{ duplicacy_restore_options }} -r $_duplicacy_backup_revision | tee restore.log
 
 # post restore
 if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_post_restore_script_file_name }} ]; then
