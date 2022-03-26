@@ -25,7 +25,7 @@ duplicacy_post_backup_script_file:      "{{ duplicacy_working_directory }}/.dupl
 duplicacy_pre_prune_script_file_name:   'pre-prune'
 duplicacy_pre_prune_script_file:        "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_prune_script_file_name }}"
 duplicacy_post_prune_script_file_name:  'post-prune'
-duplicacy_post_prune_script_file:       "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_backup_script_file_name }}"
+duplicacy_post_prune_script_file:       "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_prune_script_file_name }}"
 duplicacy_prune_options:                '-keep 365:3650 -keep 30:365 -keep 7:30 -keep 1:7 -a'
 duplicacy_prune_schedule_hour:          "4"
 duplicacy_prune_schedule_minute:        "0"
@@ -34,6 +34,10 @@ duplicacy_prune_schedule_weekday:       "*"
 duplicacy_prune_schedule_month:         "*"
 duplicacy_prune_schedule_user:          root
 duplicacy_restore_options:              '-overwrite'
+duplicacy_pre_restore_script_file_name:   'pre-restore'
+duplicacy_pre_restore_script_file:        "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_restore_script_file_name }}"
+duplicacy_post_restore_script_file_name:  'post-restore'
+duplicacy_post_restore_script_file:       "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_restore_script_file_name }}"
 
 duplicacy_storage_backends:
   - 'Local disk'

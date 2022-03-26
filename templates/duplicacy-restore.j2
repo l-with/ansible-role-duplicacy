@@ -18,6 +18,25 @@ export {{ _env }}="{{ _duplicacy_env_restore[_env] }}"
 export {{ _env }}="{{ _duplicacy_env_special[_env] }}"
 {% endfor %}
 
+# pre restore
+status=0
+if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_pre_restore_script_file_name }} ]; then
+    bash {{ duplicacy_script_file_path }}/{{ duplicacy_pre_restore_script_file_name }}
+    status=$?
+fi
+
+if [ $status != 0 ]; then
+    echo "Pre-restore script exited with status code $status. Not performing restore." >&2
+    exit $status
+fi
+
 # restore
 export _duplicacy_backup_revision=$({{ duplicacy_path }}/bin/duplicacy list | tail -n 1 | cut -d " " -f 4)
 {{ duplicacy_path }}/bin/duplicacy restore {{ duplicacy_restore_options }} {{ duplicacy_snapshot_id }} -r $_duplicacy_backup_revision
+
+# post restore
+if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_post_restore_script_file_name }} ]; then
+    bash {{ duplicacy_script_file_path }}/{{ duplicacy_post_restore_script_file_name }}
+    status=$?
+    exit $status
+fi
