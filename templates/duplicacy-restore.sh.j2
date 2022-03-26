@@ -32,6 +32,10 @@ fi
 
 # restore
 export _duplicacy_backup_revision=$({{ duplicacy_path }}/bin/duplicacy list | tail -n 1 | cut -d " " -f 4)
+if [ -z "${_duplicacy_backup_revision##*[!0-9]*}" ]; then
+    echo "Computed last snapshot revision '$_duplicacy_backup_revision' is not a number." >&2
+    exit -1
+fi
 {{ duplicacy_path }}/bin/duplicacy -log restore {{ duplicacy_restore_options }} -r $_duplicacy_backup_revision | tee restore.log
 
 # post restore
