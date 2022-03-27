@@ -28,7 +28,7 @@ if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_nam
 fi
 
 if [ $status != 0 ]; then
-    echo $(date "+%Y-%m-%d %H:%M:%S.%3N") ERROR SCRIPT_RUN Status code '$status' fromscript {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }} |\
+    echo $(date "+%Y-%m-%d %H:%M:%S.%3N") ERROR SCRIPT_RUN Status code "'"$status"'" from script {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }} |\
         tee --append backup.log
 else 
 # backup
