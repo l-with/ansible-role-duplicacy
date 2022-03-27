@@ -18,6 +18,9 @@ export {{ _env }}="{{ _duplicacy_env_backup[_env] }}"
 export {{ _env }}="{{ _duplicacy_env_special[_env] }}"
 {% endfor %}
 
+# initialize backup.log
+echo >backup.log
+
 # pre backup
 status=0
 if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }} ]; then
@@ -33,7 +36,7 @@ if [ $status != 0 ]; then
 else 
 # backup
     {{ duplicacy_path }}/bin/duplicacy -log backup {{ duplicacy_backup_options }} |\
-        tee backup.log
+        tee --append backup.log
 fi
 
 # post backup
