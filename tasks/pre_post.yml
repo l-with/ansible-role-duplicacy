@@ -41,5 +41,23 @@
   vars:
     _duplicacy_pre_post_script_file_content: "{{ duplicacy_post_prune_script_file_content }}"
   when: duplicacy_post_prune_script_file_content is defined
-  
+
+- name: Ensure {{ duplicacy_pre_restore_script_file }}
+  ansible.builtin.template:
+    src:  pre-post-script.sh.j2
+    dest: "{{ duplicacy_pre_restore_script_file }}"
+    mode: ug+x,o-rwx
+  vars:
+    _duplicacy_pre_post_script_file_content: "{{ duplicacy_pre_restore_script_file_content }}"
+  when: duplicacy_pre_restore_script_file_content is defined
+
+- name: Ensure {{ duplicacy_post_restore_script_file }}
+  ansible.builtin.template:
+    src:  pre-post-script.sh.j2
+    dest: "{{ duplicacy_post_restore_script_file }}"
+    mode: ug+x,o-rwx
+  vars:
+    _duplicacy_pre_post_script_file_content: "{{ duplicacy_post_restore_script_file_content }}"
+  when: duplicacy_post_restore_script_file_content is defined
+
 ...

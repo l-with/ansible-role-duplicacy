@@ -27,25 +27,31 @@
 - name: Ensure init script
   ansible.builtin.template:
     src:  duplicacy-init.sh.j2
-    dest: "{{ duplicacy_script_file_path }}/duplicacy-init.sh"
+    dest: "{{ duplicacy_init_script_file }}"
     mode: ug+x,o-rwx
 
 - name: Ensure backup script
   ansible.builtin.template:
     src:  duplicacy-backup.sh.j2
-    dest: "{{ duplicacy_script_file_path }}/duplicacy-backup.sh"
+    dest: "{{ duplicacy_backup_script_file }}"
     mode: ug+x,o-rwx
 
 - name: Ensure prune script
   ansible.builtin.template:
     src:  duplicacy-prune.sh.j2
-    dest: "{{ duplicacy_script_file_path }}/duplicacy-prune.sh"
+    dest: "{{ duplicacy_prune_script_file }}"
+    mode: ug+x,o-rwx
+
+- name: Ensure restore script
+  ansible.builtin.template:
+    src:  duplicacy-restore.sh.j2
+    dest: "{{ duplicacy_restore_script_file }}"
     mode: ug+x,o-rwx
 
 - name: Ensure backup schedule
   ansible.builtin.cron:
     name:      duplicacy backup
-    job:       "{{ duplicacy_script_file_path }}/duplicacy-backup.sh"
+    job:       "{{ duplicacy_backup_script_file }}"
     cron_file: ansible-duplicacy-backup
     user:      "{{ duplicacy_backup_schedule_user }}"
     hour:      "{{ duplicacy_backup_schedule_hour }}"
@@ -57,7 +63,7 @@
 - name: Ensure prune schedule
   ansible.builtin.cron:
     name:      duplicacy prune
-    job:       "{{ duplicacy_script_file_path }}/duplicacy-prune.sh"
+    job:       "{{ duplicacy_prune_script_file }}"
     cron_file: ansible-duplicacy-prune
     user:      "{{ duplicacy_prune_schedule_user }}"
     hour:      "{{ duplicacy_prune_schedule_hour }}"

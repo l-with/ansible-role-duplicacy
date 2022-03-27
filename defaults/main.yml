@@ -1,38 +1,69 @@
 ---
 
+### install
 duplicacy_version:                      2.7.2
 duplicacy_path:                         /opt/duplicacy
-duplicacy_init_options:                 '-encrypt'
+duplicacy_script_file_path:             "{{ duplicacy_path }}/scripts"
+
+### configure
+# duplicacy_snapshot_id:
 duplicacy_backup_options:               ''
 # duplicacy_working_directory:
+# duplicacy_password:
+# duplicacy_storage_url:
+# duplicacy_storage_backend:
 duplicacy_repository:                   "{{ duplicacy_working_directory }}"
 duplicacy_secret_file_path:             "{{ duplicacy_path }}/secret"
+# duplicacy_secret_file_content:
 duplicacy_secret_file_force:            false
 duplicacy_onedrive_token_file_name:     'one-token.json'
 duplicacy_ssh_key_file_name:            'id'
+# duplicacy_b2_id:
+# duplicacy_b2_key:
+
+### init
+duplicacy_init_options:                 '-encrypt'
+duplicacy_init_script_file:             "{{ duplicacy_script_file_path }}/duplicacy-init.sh"
+
+### backup
 duplicacy_backup_immediately:           false
+duplicacy_backup_script_file:           "{{ duplicacy_script_file_path }}/duplicacy-backup.sh"
+duplicacy_pre_backup_script_file_name:  'pre-backup'
+duplicacy_pre_backup_script_file:       "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_backup_script_file_name }}"
+duplicacy_post_backup_script_file_name: 'post-backup'
+duplicacy_post_backup_script_file:      "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_backup_script_file_name }}"
+# duplicacy_pre_backup_script_file_content:
+# duplicacy_post_backup_script_file_content:
+duplicacy_backup_schedule_user:         root
 duplicacy_backup_schedule_hour:         "1"
 duplicacy_backup_schedule_minute:       "0"
 duplicacy_backup_schedule_day:          "*"
 duplicacy_backup_schedule_weekday:      "*"
 duplicacy_backup_schedule_month:        "*"
-duplicacy_backup_schedule_user:         root
-duplicacy_script_file_path:             "{{ duplicacy_path }}/scripts"
-duplicacy_pre_backup_script_file_name:  'pre-backup'
-duplicacy_pre_backup_script_file:       "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_backup_script_file_name }}"
-duplicacy_post_backup_script_file_name: 'post-backup'
-duplicacy_post_backup_script_file:      "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_backup_script_file_name }}"
+
+### prune
+duplicacy_prune_script_file:            "{{ duplicacy_script_file_path }}/duplicacy-prune.sh"
 duplicacy_pre_prune_script_file_name:   'pre-prune'
 duplicacy_pre_prune_script_file:        "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_prune_script_file_name }}"
 duplicacy_post_prune_script_file_name:  'post-prune'
-duplicacy_post_prune_script_file:       "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_backup_script_file_name }}"
+duplicacy_post_prune_script_file:       "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_prune_script_file_name }}"
+# duplicacy_pre_prune_script_file_content:
+# duplicacy_post_prune_script_file_content:
 duplicacy_prune_options:                '-keep 365:3650 -keep 30:365 -keep 7:30 -keep 1:7 -a'
+duplicacy_prune_schedule_user:          root
 duplicacy_prune_schedule_hour:          "4"
 duplicacy_prune_schedule_minute:        "0"
 duplicacy_prune_schedule_day:           "*"
 duplicacy_prune_schedule_weekday:       "*"
 duplicacy_prune_schedule_month:         "*"
-duplicacy_prune_schedule_user:          root
+
+### restore
+duplicacy_restore_script_file:          "{{ duplicacy_script_file_path }}/duplicacy-restore.sh"
+duplicacy_restore_options:              '-overwrite'
+duplicacy_pre_restore_script_file_name:   'pre-restore'
+duplicacy_pre_restore_script_file:        "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_restore_script_file_name }}"
+duplicacy_post_restore_script_file_name:  'post-restore'
+duplicacy_post_restore_script_file:       "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_restore_script_file_name }}"
 
 duplicacy_storage_backends:
   - 'Local disk'
