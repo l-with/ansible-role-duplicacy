@@ -31,9 +31,9 @@ The output of `duplicacy backup` is placed in `backup.log` and the output of `du
 | configure | duplicacy_b2_id | | the value for `DUPLICACY_B2_ID` |
 | configure | duplicacy_b2_key | | the value for `DUPLICACY_B2_KEY` |
 | init | duplicacy_init_options | `'-encrypt'` | the options for `duplicacy init` |
-| init | duplicacy_init_script_file | `"{{ duplicacy_script_file_path }}/duplicacy-init.sh"` | the duplicacy init script file |
+| init | duplicacy_init_script_file | `"{{ duplicacy_script_file_path }}/init"` | the duplicacy init script file |
 | backup | duplicacy_backup_immediately | `false` | if a backup should be performed immediately after the container is started immediately |
-| backup | duplicacy_backup_script_file | `"{{ duplicacy_script_file_path }}/duplicacy-backup.sh"` | the duplicacy backup script file |
+| backup | duplicacy_backup_script_file | `"{{ duplicacy_script_file_path }}/backup"` | the duplicacy backup script file |
 | backup | duplicacy_pre_backup_script_file_name | `'pre-backup'` | the file name of the pre backup script |
 | backup | duplicacy_pre_backup_script_file | `"{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_backup_script_file_name }}"` | the pre backup script file |
 | backup | duplicacy_post_backup_script_file_name | `'post-backup'` | the file name of the post backup script |
@@ -46,7 +46,7 @@ The output of `duplicacy backup` is placed in `backup.log` and the output of `du
 | backup | duplicacy_backup_schedule_day | `*` | the cron schedule day for duplicacy backups |
 | backup | duplicacy_backup_schedule_weekday | `*` | the cron schedule weekday for duplicacy backups |
 | backup | duplicacy_backup_schedule_month | `*` | the cron schedule month for duplicacy backups |
-| prune | duplicacy_prune_script_file | `"{{ duplicacy_script_file_path }}/duplicacy-prune.sh"` | the duplicacy prune script file |
+| prune | duplicacy_prune_script_file | `"{{ duplicacy_script_file_path }}/prune"` | the duplicacy prune script file |
 | prune | duplicacy_pre_prune_script_file_name | `'pre-prune'` | the file name of the pre prune script |
 | prune | duplicacy_pre_prune_script_file | `"{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_prune_script_file_name }}"` | the pre prune script file |
 | prune | duplicacy_post_prune_script_file_name | `'post-prune'` | the file name of the post backup script |
@@ -61,7 +61,7 @@ The output of `duplicacy backup` is placed in `backup.log` and the output of `du
 | prune | duplicacy_prune_schedule_weekday | `*` | the cron schedule weekday for duplicacy prunes |
 | prune | duplicacy_prune_schedule_month | `*` | the cron schedule month for duplicacy prunes |
 | restore | duplicacy_restore_options | `'-overwrite'` | the options for `duplicacy restore` |
-| restore | duplicacy_restore_script_file | `"{{ duplicacy_script_file_path }}/duplicacy-restore.sh"`| the duplicacy restore script file |
+| restore | duplicacy_restore_script_file | `"{{ duplicacy_script_file_path }}/restore"`| the duplicacy restore script file |
 <!-- markdownlint-enable MD033 -->
 
 ## Test

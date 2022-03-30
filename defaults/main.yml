@@ -23,11 +23,11 @@ duplicacy_ssh_key_file_name:            'id'
 
 ### init
 duplicacy_init_options:                 '-encrypt'
-duplicacy_init_script_file:             "{{ duplicacy_script_file_path }}/duplicacy-init.sh"
+duplicacy_init_script_file:             "{{ duplicacy_script_file_path }}/init"
 
 ### backup
 duplicacy_backup_immediately:           false
-duplicacy_backup_script_file:           "{{ duplicacy_script_file_path }}/duplicacy-backup.sh"
+duplicacy_backup_script_file:           "{{ duplicacy_script_file_path }}/backup"
 duplicacy_pre_backup_script_file_name:  'pre-backup'
 duplicacy_pre_backup_script_file:       "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_backup_script_file_name }}"
 duplicacy_post_backup_script_file_name: 'post-backup'
@@ -42,7 +42,7 @@ duplicacy_backup_schedule_weekday:      "*"
 duplicacy_backup_schedule_month:        "*"
 
 ### prune
-duplicacy_prune_script_file:            "{{ duplicacy_script_file_path }}/duplicacy-prune.sh"
+duplicacy_prune_script_file:            "{{ duplicacy_script_file_path }}/prune"
 duplicacy_pre_prune_script_file_name:   'pre-prune'
 duplicacy_pre_prune_script_file:        "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_prune_script_file_name }}"
 duplicacy_post_prune_script_file_name:  'post-prune'
@@ -58,7 +58,7 @@ duplicacy_prune_schedule_weekday:       "*"
 duplicacy_prune_schedule_month:         "*"
 
 ### restore
-duplicacy_restore_script_file:          "{{ duplicacy_script_file_path }}/duplicacy-restore.sh"
+duplicacy_restore_script_file:          "{{ duplicacy_script_file_path }}/restore"
 duplicacy_restore_options:              '-overwrite'
 duplicacy_pre_restore_script_file_name:   'pre-restore'
 duplicacy_pre_restore_script_file:        "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_restore_script_file_name }}"
