@@ -92,7 +92,7 @@
 
 - name: Ensure duplicacy init
   ansible.builtin.command:
-    cmd: "{{ duplicacy_script_file_path }}/duplicacy-init.sh"
+    cmd: "{{ duplicacy_init_script_file }}"
   args:
     creates: "{{ duplicacy_working_directory }}/.duplicacy/preferences"
 
@@ -101,7 +101,7 @@
 
 - name: Ensure duplicacy backup
   ansible.builtin.command:
-    cmd: "{{ duplicacy_script_file_path }}/duplicacy-backup.sh"
+    cmd: "{{ duplicacy_backup_script_file }}"
   when: duplicacy_backup_immediately
   
 ...
