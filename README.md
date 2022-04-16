@@ -8,6 +8,14 @@ They can be placed in `duplicacy_scriptfile_path` and then will be executed by t
 
 The output of `duplicacy backup` is placed in `backup.log` and the output of `duplicacy prune` in `prune.log` in the working directory of duplicacy.
 
+Supported storage backends are defined in `duplicacy_storage_backends`:
+
+- 'Local disk'
+- 'Blackblaze B2'
+- 'SSH/SFTP Password'
+- 'SSH/SFTP Keyfile'
+- 'Onedrive'
+
 ## Role Variables
 
 <!-- markdownlint-disable MD033 -->
