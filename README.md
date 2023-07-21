@@ -36,6 +36,8 @@ Supported storage backends are defined in `duplicacy_storage_backends`:
 | configure | duplicacy_secret_file_force | `false` | if the templating of the secret file will be forced, even if the secret file exists |
 | configure | duplicacy_onedrive_token_file_name | `one-token.json`| the filename for `DUPLICACY_ONE_TOKEN` |
 | configure | duplicacy_ssh_key_file_name | `id` | the filename for `DUPLICACY_SSH_KEY_FILE` |
+| configure | duplicacy_ssh_password | | the value for `DUPLICACY_SSH_PASSWORD` |
+| configure | duplicacy_ssh_passphrase | | the value for `DUPLICACY_SSH_PASSPHRASE` |
 | configure | duplicacy_b2_id | | the value for `DUPLICACY_B2_ID` |
 | configure | duplicacy_b2_key | | the value for `DUPLICACY_B2_KEY` |
 | init | duplicacy_init_options | `'-encrypt'` | the options for `duplicacy init` |
