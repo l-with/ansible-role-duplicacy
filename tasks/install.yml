@@ -12,9 +12,9 @@
     state: directory
     mode:  o-rwx
 
-- name: Print ansible_facts
+- name: Print ansible_architecture
   ansible.builtin.debug:
-    msg: "ansible_architecture: {{ ansible_facts }}"
+    msg: "ansible_architecture: {{ ansible_architecture }}"
 
 - name: Ensure install duplicacy
   ansible.builtin.get_url:
