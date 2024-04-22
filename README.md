@@ -21,7 +21,7 @@ Supported storage backends are defined in `duplicacy_storage_backends`:
 <!-- markdownlint-disable MD033 -->
 | group | variable | default | description |
 | --- | --- | ---| --- |
-| install | duplicacy_version | `2.7.2` | the duplicacy version to install |
+| install | duplicacy_version | `3.2.3` | the duplicacy version to install |
 | install | duplicacy_path | `/opt/duplicacy` | the path to install duplicacy |
 | install | duplicacy_scriptfile_path | `"{{ duplicacy_path }}/scripts"` | the path where the scripts for `duplicacy init`, `duplicacy backup`, `duplicacy restore` and `duplicacy prune` are created |
 | configure | duplicacy_snapshot_id | | the `<snapshot id>` for `duplicacy init` |
