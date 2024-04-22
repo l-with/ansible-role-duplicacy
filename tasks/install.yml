@@ -12,6 +12,10 @@
     state: directory
     mode:  o-rwx
 
+- name: Print ansible_architecture
+  ansible.builtin.debug:
+    masg: "ansible_architecture: {{ ansible_facts.ansible_architecture }}"
+    
 - name: Ensure install duplicacy
   ansible.builtin.get_url:
     url: "https://github.com/gilbertchen/duplicacy/releases/download/v{{ duplicacy_version }}/duplicacy_linux_x64_{{ duplicacy_version }}"
