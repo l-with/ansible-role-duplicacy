@@ -19,12 +19,12 @@
 - name: Ensure url snippet machine x64
   ansible.builtin.set_fact:
     _duplicacy_url_snippet_machine: 'x64'
-  when: anible_machine == 'x86_64'
+  when: ansible_machine == 'x86_64'
 
 - name: Ensure url snippet machine 
   ansible.builtin.set_fact:
     _duplicacy_url_snippet_machine: 'arm64'
-  when: anible_machine == 'aarch64'
+  when: ansible_machine == 'aarch64'
 
 - name: Ensure install duplicacy
   ansible.builtin.get_url:
