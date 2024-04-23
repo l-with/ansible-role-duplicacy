@@ -12,17 +12,23 @@
     state: directory
     mode:  o-rwx
 
-- name: Print ansible_architecture
-  ansible.builtin.debug:
-    msg: "ansible_architecture: {{ ansible_architecture }}"
-
 - name: Print ansible_machine
   ansible.builtin.debug:
     msg: "ansible_machine: {{ ansible_machine }}"
 
+- name: Ensure url snippet machine x64
+  ansible.builtin.set_fact:
+    _duplicacy_url_snippet_machine: 'x64'
+  when: anible_machine == 'x86_64'
+
+- name: Ensure url snippet machine 
+  ansible.builtin.set_fact:
+    _duplicacy_url_snippet_machine: 'arm64'
+  when: anible_machine == 'aarch64'
+
 - name: Ensure install duplicacy
   ansible.builtin.get_url:
-    url: "https://github.com/gilbertchen/duplicacy/releases/download/v{{ duplicacy_version }}/duplicacy_linux_x64_{{ duplicacy_version }}"
+    url: "https://github.com/gilbertchen/duplicacy/releases/download/v{{ duplicacy_version }}/duplicacy_linux_{{ _duplicacy_url_snippet_machine }}_{{ duplicacy_version }}"
     dest: "{{ duplicacy_path }}/bin/duplicacy"
     mode: ug+x,o-rwx
 
