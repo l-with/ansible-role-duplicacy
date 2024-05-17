@@ -1,7 +1,7 @@
 ---
 
 - hosts: localhost
-  become: true
+  gather_facts: false
 
   tasks:
 
@@ -102,6 +102,7 @@
     ansible.builtin.include_role:
       name: ../../ansible-role-duplicacy
     vars:
+      duplicacy_schedule:           false
       duplicacy_path:               "{{ playbook_dir }}/.opt-onedrive"
       duplicacy_script_file_path:   "{{ playbook_dir }}/.opt-onedrive/scripts"
       duplicacy_snapshot_id:        "duplicacy-backup"

@@ -34,6 +34,7 @@ duplicacy_post_backup_script_file_name: 'post-backup'
 duplicacy_post_backup_script_file:      "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_backup_script_file_name }}"
 # duplicacy_pre_backup_script_file_content:
 # duplicacy_post_backup_script_file_content:
+duplicacy_backup_schedule:              true
 duplicacy_backup_schedule_user:         root
 duplicacy_backup_schedule_hour:         "1"
 duplicacy_backup_schedule_minute:       "0"

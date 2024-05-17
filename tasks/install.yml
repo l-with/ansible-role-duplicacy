@@ -59,6 +59,7 @@
     day:       "{{ duplicacy_backup_schedule_day }}"
     weekday:   "{{ duplicacy_backup_schedule_weekday }}"
     month:     "{{ duplicacy_backup_schedule_month }}"
+  when: duplicacy_schedule
 
 - name: Ensure prune schedule
   ansible.builtin.cron:
@@ -71,6 +72,7 @@
     day:       "{{ duplicacy_prune_schedule_day }}"
     weekday:   "{{ duplicacy_prune_schedule_weekday }}"
     month:     "{{ duplicacy_prune_schedule_month }}"
+  when: duplicacy_schedule
 
 ...
 

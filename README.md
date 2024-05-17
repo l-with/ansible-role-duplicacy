@@ -40,6 +40,7 @@ Supported storage backends are defined in `duplicacy_storage_backends`:
 | configure | duplicacy_ssh_passphrase | | the value for `DUPLICACY_SSH_PASSPHRASE` |
 | configure | duplicacy_b2_id | | the value for `DUPLICACY_B2_ID` |
 | configure | duplicacy_b2_key | | the value for `DUPLICACY_B2_KEY` |
+| configure | duplicacy_schedule | `true` | if duplicacy should be schedules with cron |
 | init | duplicacy_init_options | `'-encrypt'` | the options for `duplicacy init` |
 | init | duplicacy_init_script_file | `"{{ duplicacy_script_file_path }}/init"` | the duplicacy init script file |
 | backup | duplicacy_backup_immediately | `false` | if a backup should be performed immediately after the container is started immediately |
