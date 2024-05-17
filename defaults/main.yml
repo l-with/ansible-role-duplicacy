@@ -1,7 +1,7 @@
 ---
 
 ### install
-duplicacy_version:                      2.7.2
+duplicacy_version:                      3.2.3
 duplicacy_path:                         /opt/duplicacy
 duplicacy_script_file_path:             "{{ duplicacy_path }}/scripts"
 
