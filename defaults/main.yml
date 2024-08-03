@@ -7,7 +7,6 @@ duplicacy_script_file_path:             "{{ duplicacy_path }}/scripts"
 
 ### configure
 # duplicacy_snapshot_id:
-duplicacy_backup_options:               ''
 # duplicacy_working_directory:
 # duplicacy_password:
 # duplicacy_storage_url:
@@ -26,6 +25,7 @@ duplicacy_init_options:                 '-encrypt'
 duplicacy_init_script_file:             "{{ duplicacy_script_file_path }}/init"
 
 ### backup
+duplicacy_backup_options:               ''
 duplicacy_backup_immediately:           false
 duplicacy_backup_script_file:           "{{ duplicacy_script_file_path }}/backup"
 duplicacy_pre_backup_script_file_name:  'pre-backup'
