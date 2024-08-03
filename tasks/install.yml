@@ -16,6 +16,10 @@
   ansible.builtin.debug:
     msg: "ansible_machine: {{ ansible_machine }}"
 
+- name: Print ansible_os_family
+  ansible.builtin.debug:
+    msg: "ansible_os_family: {{ ansible_os_family }}"
+
 - name: Ensure url snippet machine x64
   ansible.builtin.set_fact:
     _duplicacy_url_snippet_machine: 'x64'
@@ -24,11 +28,21 @@
 - name: Ensure url snippet machine 
   ansible.builtin.set_fact:
     _duplicacy_url_snippet_machine: 'arm64'
-  when: ansible_machine == 'aarch64'
+  when: ansible_machine == 'aarch64' or ansible_machine == 'arm64'
+  
+- name: Ensure urls snippet os
+  ansible.builtin.set_fact:
+    _duplicacy_url_snippet_os: 'linux'
+  when: ansible_os_family != 'Darwin'
+
+- name: Ensure urls snippet os
+  ansible.builtin.set_fact:
+    _duplicacy_url_snippet_os: 'osx'
+  when: ansible_os_family == 'Darwin'
 
 - name: Ensure install duplicacy
   ansible.builtin.get_url:
-    url: "https://github.com/gilbertchen/duplicacy/releases/download/v{{ duplicacy_version }}/duplicacy_linux_{{ _duplicacy_url_snippet_machine }}_{{ duplicacy_version }}"
+    url: "https://github.com/gilbertchen/duplicacy/releases/download/v{{ duplicacy_version }}/duplicacy_{{ _duplicacy_url_snippet_os }}_{{ _duplicacy_url_snippet_machine }}_{{ duplicacy_version }}"
     dest: "{{ duplicacy_path }}/bin/duplicacy"
     mode: ug+x,o-rwx
 
