@@ -43,7 +43,7 @@ Supported storage backends are defined in `duplicacy_storage_backends`:
 | configure | duplicacy_schedule | `true` | if duplicacy should be schedules with cron |
 | init | duplicacy_init_options | `'-encrypt'` | the options for `duplicacy init` |
 | init | duplicacy_init_script_file | `"{{ duplicacy_script_file_path }}/init"` | the duplicacy init script file |
-| backup | duplicacy_backup_immediately | `false` | if a backup should be performed immediately after the container is started immediately |
+| backup | duplicacy_backup_immediately | `false` | if a backup should be performed immediately |
 | backup | duplicacy_backup_script_file | `"{{ duplicacy_script_file_path }}/backup"` | the duplicacy backup script file |
 | backup | duplicacy_pre_backup_script_file_name | `'pre-backup'` | the file name of the pre backup script |
 | backup | duplicacy_pre_backup_script_file | `"{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_backup_script_file_name }}"` | the pre backup script file |
