@@ -1,7 +1,7 @@
 ---
 
 - hosts: localhost
-  gather_facts: false
+  gather_facts: true
 
   tasks:
 
@@ -37,6 +37,7 @@
       duplicacy_working_directory:  "{{ playbook_dir }}/.data-local"
       duplicacy_backup_immediately: true
       duplicacy_storage_backend:    'Local disk'
+      duplicacy_schedule:    false
       duplicacy_pre_backup_script_file_content: |
         #!/bin/sh
         echo pre-backup
