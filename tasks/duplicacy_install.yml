@@ -1,5 +1,9 @@
 ---
 
+- name: Include secret file tasks for 'Onedrive', 'SSH/SFTP Keyfile'
+  include_tasks: duplicacy_secret_file.yml
+  when: duplicacy_storage_backend in ['Onedrive', 'SSH/SFTP Keyfile']
+
 - name: Ensure "{{ duplicacy_path }}"
   ansible.builtin.file:
     path: "{{ duplicacy_path }}"
@@ -51,6 +55,12 @@
     path: "{{ duplicacy_working_directory }}"
     state: directory
     mode:  o-rwx
+
+- name: Ensure {{ duplicacy_script_file_path }}
+  ansible.builtin.file:
+    path: "{{ duplicacy_script_file_path }}"
+    state: directory
+    mode: o-rwx
 
 - name: Ensure init script
   ansible.builtin.template:

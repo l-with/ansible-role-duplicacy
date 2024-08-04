@@ -1,9 +1,21 @@
 ---
 
+duplicacy_storage_backends:
+  - 'Local disk'
+  - 'Blackblaze B2'
+  - 'SSH/SFTP Password'
+  - 'SSH/SFTP Keyfile'
+  - 'Onedrive'
+duplicacy_actions:
+  - 'install'
+  - 'uninstall'
+  - 'noop'
+duplicacy_action: install
+
 ### install
-duplicacy_version:                      3.2.3
-duplicacy_path:                         /opt/duplicacy
-duplicacy_script_file_path:             "{{ duplicacy_path }}/scripts"
+duplicacy_version:          3.2.3
+duplicacy_path:             /opt/duplicacy
+duplicacy_script_file_path: "{{ duplicacy_path }}/scripts"
 
 ### configure
 # duplicacy_snapshot_id:
@@ -65,12 +77,5 @@ duplicacy_pre_restore_script_file_name:   'pre-restore'
 duplicacy_pre_restore_script_file:        "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_pre_restore_script_file_name }}"
 duplicacy_post_restore_script_file_name:  'post-restore'
 duplicacy_post_restore_script_file:       "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_restore_script_file_name }}"
-
-duplicacy_storage_backends:
-  - 'Local disk'
-  - 'Blackblaze B2'
-  - 'SSH/SFTP Password'
-  - 'SSH/SFTP Keyfile'
-  - 'Onedrive'
 
 ...

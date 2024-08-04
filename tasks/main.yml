@@ -5,99 +5,29 @@
     msg: Storage backend '{{ duplicacy_storage_backend }}' not supported
   when: not duplicacy_storage_backend in duplicacy_storage_backends
 
-- name: Ensure {{ duplicacy_script_file_path }}
-  ansible.builtin.file:
-    path: "{{ duplicacy_script_file_path }}"
-    state: directory
-    mode: o-rwx
+- name: Check action
+  ansible.builtin.fail:
+    msg: Action '{{ duplicacy_action }}' not supported
+  when: not duplicacy_action in duplicacy_actions
 
-- name: Set _duplicacy_env
-  ansible.builtin.set_fact:
-    _duplicacy_env:
-      DUPLICACY_PASSWORD:     "{{ duplicacy_password }}"
-
-- name: Set _duplicacy_env_init
-  ansible.builtin.set_fact:
-    _duplicacy_env_init:
-      DUPLICACY_INIT_OPTIONS: "{{ duplicacy_init_options }}"
-
-- name: Set _duplicacy_env_backup
-  ansible.builtin.set_fact:
-    _duplicacy_env_backup:
-      DUPLICACY_BACKUP_OPTIONS: "{{ duplicacy_backup_options }}"
-
-- name: Set _duplicacy_env_prune
-  ansible.builtin.set_fact:
-    _duplicacy_env_prune:
-      DUPLICACY_PRUNE_OPTIONS: "{{ duplicacy_prune_options }}"
-
-- name: Set _duplicacy_env_restore
-  ansible.builtin.set_fact:
-    _duplicacy_env_restore:
-      DUPLICACY_RESTORE_OPTIONS: "{{ duplicacy_restore_options }}"
-
-- name: Set specials for 'Local disk'
-  block:
-    - name: Set _duplicacy_env_special for 'Local disk'
-      ansible.builtin.set_fact:
-        _duplicacy_env_special: {}
-  when: duplicacy_storage_backend == 'Local disk'
-
-- name: Set specials for 'Blackblaze B2'
-  block:
-    - name: Set _duplicacy_env_special for 'Blackblaze B2'
-      ansible.builtin.set_fact:
-        _duplicacy_env_special:
-          DUPLICACY_B2_ID:  "{{ duplicacy_b2_id }}"
-          DUPLICACY_B2_KEY: "{{ duplicacy_b2_key }}"
-  when: duplicacy_storage_backend == 'Blackblaze B2'
-
-- name: Set specials for 'SSH/SFTP Password'
-  block:
-    - name: Set _duplicacy_env_special for 'SSH/SFTP Password'
-      ansible.builtin.set_fact:
-        _duplicacy_env_special:
-          DUPLICACY_SSH_PASSWORD: "{{ duplicacy_ssh_password }}"
-  when: duplicacy_storage_backend == 'SSH/SFTP Password'
-
-- name: Set specials for 'SSH/SFTP Keyfile'
-  block:
-    - name: Set _duplicacy_env_special for 'SSH/SFTP Keyfile'
-      ansible.builtin.set_fact:
-        _duplicacy_env_special:
-          DUPLICACY_SSH_KEY_FILE:   "{{ duplicacy_secret_file_path }}/{{ duplicacy_ssh_key_file_name }}"
-          DUPLICACY_SSH_PASSPHRASE: "{{ duplicacy_ssh_passphrase }}"
-    - name: Set _duplicacy_secret_file_name for 'SSH/SFTP Keyfile'
-      ansible.builtin.set_fact:
-        _duplicacy_secret_file_name: "{{ duplicacy_ssh_key_file_name }}"
-  when: duplicacy_storage_backend == 'SSH/SFTP Keyfile'
-
-- name: Set specials for 'Onedrive'
-  block:
-    - name: Set _duplicacy_env_special for 'Onedrive'
-      ansible.builtin.set_fact:
-        _duplicacy_env_special:
-          DUPLICACY_ONE_TOKEN: "{{ duplicacy_secret_file_path }}/{{ duplicacy_onedrive_token_file_name }}"
-    - name: Set _duplicacy_secret_file_name for 'Onedrive'
-      ansible.builtin.set_fact:
-        _duplicacy_secret_file_name: "{{ duplicacy_onedrive_token_file_name }}"
-  when: duplicacy_storage_backend == 'Onedrive'
-
-- name: Include secret file tasks for 'Onedrive', 'SSH/SFTP Keyfile'
-  include_tasks: secret_file.yml
-  when: duplicacy_storage_backend in ['Onedrive', 'SSH/SFTP Keyfile']
+- name: include set facts
+  include_tasks: duplicacy_set_facts.yml
+  when: duplicacy_action == 'install'
 
 - name: Include install tasks
-  include_tasks: install.yml
+  include_tasks: duplicacy_install.yml
+  when: duplicacy_action == 'install'
 
 - name: Ensure duplicacy init
   ansible.builtin.command:
     cmd: "{{ duplicacy_init_script_file }}"
   args:
     creates: "{{ duplicacy_working_directory }}/.duplicacy/preferences"
+  when: duplicacy_action == 'install'
 
 - name: Include pre and post script tasks
   include_tasks: pre_post.yml
+  when: duplicacy_action == 'install'
 
 - name: Ensure duplicacy backup
   ansible.builtin.command:
