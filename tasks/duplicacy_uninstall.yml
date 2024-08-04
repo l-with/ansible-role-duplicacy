@@ -1,0 +1,38 @@
+---
+
+- name: Ensure delete "{{ duplicacy_path }}"
+  ansible.builtin.file:
+    path:  "{{ duplicacy_path }}"
+    state: absent
+
+- name: Ensure delete {{ duplicacy_secret_file_path }}
+  ansible.builtin.file:
+    path:  "{{ duplicacy_secret_file_path }}"
+    state: absent
+
+- name: Ensure delete working directory
+  ansible.builtin.file:
+    path:  "{{ duplicacy_working_directory }}"
+    state: absent
+
+- name: Ensure delete {{ duplicacy_script_file_path }}
+  ansible.builtin.file:
+    path:  "{{ duplicacy_script_file_path }}"
+    state: absent
+
+- name: Ensure delete backup schedule
+  ansible.builtin.cron:
+    name:      duplicacy backup
+    cron_file: ansible-duplicacy-backup
+    state:     absent
+  when: duplicacy_schedule
+
+- name: Ensure delete prune schedule
+  ansible.builtin.cron:
+    name:      duplicacy prune
+    job:       "{{ duplicacy_prune_script_file }}"
+    cron_file: ansible-duplicacy-prune
+    state:     absent
+  when: duplicacy_schedule
+
+...

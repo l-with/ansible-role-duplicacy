@@ -10,6 +10,10 @@
     msg: Action '{{ duplicacy_action }}' not supported
   when: not duplicacy_action in duplicacy_actions
 
+- name: Print acton
+  ansible.builtin.debug:
+    msg: "duplicacy_action: {{ duplicacy_action }}"
+
 - name: include set facts
   include_tasks: duplicacy_set_facts.yml
   when: duplicacy_action == 'install'
@@ -17,6 +21,10 @@
 - name: Include install tasks
   include_tasks: duplicacy_install.yml
   when: duplicacy_action == 'install'
+
+- name: Include uninstall tasks
+  include_tasks: duplicacy_uninstall.yml
+  when: duplicacy_action == 'uninstall'
 
 - name: Ensure duplicacy init
   ansible.builtin.command:
@@ -32,6 +40,6 @@
 - name: Ensure duplicacy backup
   ansible.builtin.command:
     cmd: "{{ duplicacy_backup_script_file }}"
-  when: duplicacy_backup_immediately
+  when: duplicacy_action == 'install' and duplicacy_backup_immediately
   
 ...
