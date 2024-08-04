@@ -18,6 +18,7 @@ duplicacy_path:             /opt/duplicacy
 duplicacy_script_file_path: "{{ duplicacy_path }}/scripts"
 
 ### configure
+duplicacy_schedule:                     true
 # duplicacy_snapshot_id:
 # duplicacy_working_directory:
 # duplicacy_password:
@@ -46,7 +47,7 @@ duplicacy_post_backup_script_file_name: 'post-backup'
 duplicacy_post_backup_script_file:      "{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_backup_script_file_name }}"
 # duplicacy_pre_backup_script_file_content:
 # duplicacy_post_backup_script_file_content:
-duplicacy_backup_schedule:              true
+duplicacy_backup_schedule:              "{{ duplicacy_schedule }}"
 duplicacy_backup_schedule_user:         root
 duplicacy_backup_schedule_hour:         "1"
 duplicacy_backup_schedule_minute:       "0"
@@ -63,6 +64,7 @@ duplicacy_post_prune_script_file:       "{{ duplicacy_working_directory }}/.dupl
 # duplicacy_pre_prune_script_file_content:
 # duplicacy_post_prune_script_file_content:
 duplicacy_prune_options:                '-keep 365:3650 -keep 30:365 -keep 7:30 -keep 1:7 -a'
+duplicacy_prune_schedule:               "{{ duplicacy_schedule }}"
 duplicacy_prune_schedule_user:          root
 duplicacy_prune_schedule_hour:          "4"
 duplicacy_prune_schedule_minute:        "0"

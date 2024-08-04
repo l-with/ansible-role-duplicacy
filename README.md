@@ -40,7 +40,7 @@ Supported storage backends are defined in `duplicacy_storage_backends`:
 | configure | duplicacy_ssh_passphrase | | the value for `DUPLICACY_SSH_PASSPHRASE` |
 | configure | duplicacy_b2_id | | the value for `DUPLICACY_B2_ID` |
 | configure | duplicacy_b2_key | | the value for `DUPLICACY_B2_KEY` |
-| configure | duplicacy_schedule | `true` | if duplicacy should be schedules with cron |
+| configure | duplicacy_schedule | `true` | if duplicacy should be scheduled with cron |
 | init | duplicacy_init_options | `'-encrypt'` | the options for `duplicacy init` |
 | init | duplicacy_init_script_file | `"{{ duplicacy_script_file_path }}/init"` | the duplicacy init script file |
 | backup | duplicacy_backup_options | `` | the options for `duplicacy backup` |
@@ -52,6 +52,7 @@ Supported storage backends are defined in `duplicacy_storage_backends`:
 | backup | duplicacy_post_backup_script_file | `"{{ duplicacy_working_directory }}/.duplicacy/scripts/{{ duplicacy_post_backup_script_file_name }}"` | the post backup script file |
 | backup | duplicacy_pre_backup_script_file_content |  | the content for the pre backup script |
 | backup | duplicacy_post_backup_script_file_content |  | the content for the post backup script |
+| backup | duplicacy_backup_schedule | `"{{ duplicacy_schedule }}"` | if duplicacy backup should be scheduled with cron |
 | backup | duplicacy_backup_schedule_user | `root` | the cron schedule user for duplicacy backups |
 | backup | duplicacy_backup_schedule_hour | `1` | the cron schedule hour for duplicacy backups |
 | backup | duplicacy_backup_schedule_minute | `0` | the cron schedule minute for duplicacy backups |
@@ -66,6 +67,7 @@ Supported storage backends are defined in `duplicacy_storage_backends`:
 | prune | duplicacy_pre_prune_script_file_content |  | the content for the pre prune script |
 | prune | duplicacy_post_prune_script_file_content |  | the content for the post prune script |
 | prune | duplicacy_prune_options | `-keep 365:3650 -keep 30:365 -keep 7:30 -keep 1:7 -a` | the options for `duplicacy prune` |
+| prune | duplicacy_prune_schedule | `"{{ duplicacy_schedule }}"` | if duplicacy prune should be scheduled with cron |
 | prune | duplicacy_prune_schedule_user | `root` | the cron schedule user for duplicacy prunes |
 | prune | duplicacy_prune_schedule_hour | `4` | the cron schedule hour for duplicacy prunes |
 | prune | duplicacy_prune_schedule_minute | `0` | the cron schedule minute for duplicacy prunes |
