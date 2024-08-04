@@ -25,18 +25,18 @@ echo >backup.log
 status=0
 if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }} ]; then
     echo $(date "+%Y-%m-%d %H:%M:%S.%3N") INFO SCRIPT_RUN Running script {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }} |\
-        tee --append backup.log
+        tee -a backup.log
     bash {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }}
     status=$?
 fi
 
 if [ $status != 0 ]; then
     echo $(date "+%Y-%m-%d %H:%M:%S.%3N") ERROR SCRIPT_RUN Status code "'"$status"'" from script {{ duplicacy_script_file_path }}/{{ duplicacy_pre_backup_script_file_name }} |\
-        tee --append backup.log
+        tee -a backup.log
 else 
 # backup
     {{ duplicacy_path }}/bin/duplicacy -log backup {{ duplicacy_backup_options }} |\
-        tee --append backup.log
+        tee -a backup.log
 fi
 
 # post backup

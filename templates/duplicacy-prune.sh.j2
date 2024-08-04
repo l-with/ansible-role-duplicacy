@@ -25,18 +25,18 @@ echo >prune.log
 status=0
 if [ -f {{ duplicacy_script_file_path }}/{{ duplicacy_pre_prune_script_file_name }} ]; then
     echo $(date "+%Y-%m-%d %H:%M:%S.%3N") INFO SCRIPT_RUN Running script {{ duplicacy_script_file_path }}/{{ duplicacy_pre_prune_script_file_name }} |\
-        tee --append prune.log
+        tee -a prune.log
     bash {{ duplicacy_script_file_path }}/{{ duplicacy_pre_prune_script_file_name }}
     status=$?
 fi
 
 if [ $status != 0 ]; then
     echo $(date "+%Y-%m-%d %H:%M:%S.%3N") ERROR SCRIPT_RUN Status code "'"$status"'" from script {{ duplicacy_script_file_path }}/{{ duplicacy_pre_prune_script_file_name }} |\
-        tee --append prune.log
+        tee -a prune.log
 else 
 # prune
     {{ duplicacy_path }}/bin/duplicacy -log prune {{ duplicacy_prune_options }} |\
-        tee --append prune.log
+        tee -a prune.log
 fi
 
 # post prune
