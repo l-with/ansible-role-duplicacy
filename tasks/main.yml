@@ -26,7 +26,7 @@
   when: duplicacy_action == 'install'
 
 - name: Include pre and post script tasks
-  include_tasks: pre_post.yml
+  include_tasks: duplicacy_pre_post.yml
   when: duplicacy_action == 'install'
 
 - name: Ensure duplicacy backup
